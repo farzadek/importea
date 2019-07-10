@@ -1,0 +1,2429 @@
+@mainBackground : whitesmoke;
+@main-color: #212529;
+@header-background: #343a40;
+
+@weed-color-sativa: #882b00;
+@weed-color-indica:  #260031;
+@weed-color-hybrid: #04520c;
+@weed-color-concent: #111111;
+
+@lg-size: 1024px;
+@md-size: 768px;
+@smd-size: 576px;
+@sm-size: 480px;
+
+@green-standard: #77be43;
+*{
+    margin: 0;
+    padding: 0;
+}
+.errInput {
+    box-shadow: inset 0 1px 3px rgba(255, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0 1px 3px rgba(255, 0, 0, 0.5);
+    border: 1px solid red;
+}
+.successMsg{
+    background-color: @weed-color-hybrid;
+    color: @mainBackground;
+    padding: .35em .2em;
+}
+body{
+    background-color: @mainBackground;
+    font-family: "Noto Serif TC", "Crete Round", "Helvetica Neue",Arial,sans-serif !important;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    color: @main-color;
+    a{
+        cursor: pointer;
+    }
+    .modal-title{
+        font-family: "Crete Round";
+    }
+    .modal-body{
+        font-family: "Noto Serif TC";
+    }
+
+    #showUser{
+        font-size: 1.2em;
+        .modal-body{
+            p{
+                .cp{
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+
+    .alarmMsg{
+        color: white;
+        position: absolute;
+        left: 0;
+        padding: .6em;
+        background-color: rgba(4, 82, 12, 0.85);
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-left: none;
+        font-size: 1.2em;
+        box-shadow: 0 0 10px #999;
+        -webkit-box-shadow: 0 0 10px #999;
+        display: none;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 25px;
+        top: -3px;
+        margin-left: 5px;
+        input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+            &:checked + .slider {
+                background-color: #2196F3;
+            }
+            &:focus + .slider {
+                box-shadow: 0 0 1px #2196F3;
+            }
+            &:checked + .slider{
+                &:before {
+                    -webkit-transform: translateX(35px);
+                    -ms-transform: translateX(35px);
+                    transform: translateX(35px);
+                }
+            }
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+            &:before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+            &.round {
+                border-radius: 25px;
+                &:before {
+                    border-radius: 50%;
+                }
+            }    
+        }  
+    }
+
+    .lds-ring {
+        display: table;
+        position: relative;
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        z-index: 99999999;
+        div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 92px;
+            height: 92px;
+            margin: 8px;
+            border: 8px solid #999;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: #2e542f transparent transparent transparent;
+            &:nth-child(1) {
+                animation-delay: -0.45s;
+            }
+            &:nth-child(2) {
+                animation-delay: -0.3s;
+            }
+            &:nth-child(3) {
+                animation-delay: -0.15s;
+            }
+        }
+    }
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+.errMessage{
+    color: red;
+    margin-left: .5rem;
+}
+.successMessage{
+    color: @weed-color-hybrid;
+    margin-left: 3rem;
+}
+#forgotPassModal{
+    z-index: 10005;
+}
+
+#loginModal, #subscribeModal{
+    h5, input{
+        font-family:"Crete Round";
+    }
+    h5{
+        font-weight: 700;
+        font-size: 1.85em;
+        float: left;
+    }
+    input{
+        font-size: 1.25em;
+        font-weight: 400;
+    }  
+    label{
+        font-family: "Noto Serif TC";
+        font-size: 1.8rem;
+    }
+}
+
+
+#userProfileModal{
+    .modal-body{
+        .nav{
+            li{
+                a{
+                    text-transform: capitalize;
+                }
+            }
+        }
+        .tab-content{
+            padding: 1em .5em;
+            form{
+                label{
+                    text-transform: capitalize;
+                }
+                &>button{
+                    margin-top: 1em;
+                }
+                input.ng-invalid {
+                    border-color: red;
+
+                }    
+            }
+            #purchase{
+                .fa-check-square-o{
+                    color: MediumSeaGreen;
+                }
+            }
+            #membership{
+                form{
+                    button{
+                        float: right;
+                        margin-right: 2.5em;
+                    }
+                    .condition{
+                        ul{
+                            li{
+                                display: inline-block;
+                                input[type=checkbox] + label {
+                                    display: block;
+                                    margin: 0 0 .5em 1em;
+                                    cursor: pointer;
+                                    padding: 0.3em;
+                                }
+                                
+                                input[type=checkbox] {
+                                    display: none;
+                                }
+                                
+                                input[type=checkbox] + label:before {
+                                    content: "\2714";
+                                    border: 2px solid #222;
+                                    border-radius: 0.2em;
+                                    display: inline-block;
+                                    width: 20px;
+                                    height: 20px;
+                                    padding-left: 1px;
+                                    padding-bottom: 0.3em;
+                                    margin-right: 0.6em;
+                                    vertical-align: bottom;
+                                    color: transparent;
+                                    transition: .2s;
+                                }
+                                
+                                input[type=checkbox] + label:active:before {
+                                    transform: scale(0);
+                                }
+                                
+                                input[type=checkbox]:checked + label:before {
+                                    background-color: MediumSeaGreen;
+                                    border-color: MediumSeaGreen;
+                                    color: #fff;
+                                }
+                                
+                                input[type=checkbox]:disabled + label:before {
+                                    transform: scale(1);
+                                    border-color: #aaa;
+                                }
+                                
+                                input[type=checkbox]:checked:disabled + label:before {
+                                    transform: scale(1);
+                                    background-color: #bfb;
+                                    border-color: #bfb;
+                                }
+                            }
+                        }
+                    }
+                }
+                .docs{
+                    &>div{
+                        padding:10px;
+                        max-height: 200px;
+                        overflow: hidden;
+                        a{
+                            position: absolute;
+                            right: 0;
+                            top:0;
+                            border: 1px solid #999;
+                            border-radius: 50%;
+                            width: 35px;
+                            height: 35px;
+                            background-color: white;
+                            i{
+                                font-size:2em;
+                                margin-left:.125em;
+                            }
+                            &.preview-image{
+                                position: relative;
+                                display: contents;
+                            }
+                        }
+                        img{
+                            width:100%;
+                            object-fit: contain;
+                            border-radius: .5em;
+                        }
+                    }
+                }
+            }
+            .orders{
+                h4{
+                    text-transform: capitalize;
+                    font-family:"Crete Round";
+                }
+                table{
+                    font-size: 1.1em;
+                    th{
+                        text-transform: capitalize;
+                        font-family:"Crete Round";    
+                        text-align: center;
+                    }
+                    tr{
+                        td{
+                            padding-bottom: 4px;
+                            border-right: 1px solid #ddd;
+                            padding-top: 4px;
+                            text-align: center;
+                            &:nth-child(2){
+                                text-align: right;
+                                padding-right: 2.5em;
+                            }
+                            &:last-child{
+                                border-right: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#teaOnlyToShowModal{
+    font-size: 1.2em;
+    .modal-body{
+        thead{
+            th{
+                text-transform: capitalize;
+                font-family:"Crete Round";    
+            }
+            &.total{
+                tr{
+                    th{
+                        border: 0;
+                        padding-bottom: 1px;
+                        padding-top: 1px;
+                        text-align: right;
+                        &:nth-child(2){
+                            font-family: "Noto Serif TC";
+                            padding-right: 3em;
+                        }
+                    }
+                    &:first-child{
+                        border-top: 2px solid #dddddd;
+                    }
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    padding-bottom: 3px;
+                    padding-top: 3px;
+                }
+            }
+        }
+        p{
+            font-size: .85em;
+            line-height: 1.5;
+        }
+    }
+}
+
+
+#productModal{
+    .modal-dialog{
+        width: 70%;
+        .modal-content{
+            .modal-header{
+                h2{
+                    float: left;
+                }
+            }
+            .modal-body{
+                display: inline-block;
+                .left{
+                    padding-right: .5em;
+                    width: 50%;
+                    float: left;
+                    display: block;
+                    img{
+                        height: 200px;
+                        width: 200px;
+                        margin: 0 auto 1.5em;
+                        border-radius: 50%;
+                        display: block;
+                    }
+                    p{
+                        line-height: 1.2;
+                    }
+                }
+                .right{
+                    padding-right: 1.5em;
+                    padding-left: .5em;
+                    width: 50%;
+                    float: left;
+                    display: block;
+                    .rating{
+                        i{
+                            display: inline;
+                            font-size: 2em;
+                            color: #FFD700;
+                        }
+                    }
+                    .grade{
+                        margin-top: .5em;
+                        font-size: 1.65em;
+                        font-family:"Crete Round";
+                    }
+                    .addBasket{
+                        form{
+                            width: 100%;
+                            select{
+                                font-size: 1.25em;
+                                height: 2.5em;
+                            }
+                            .quantity{
+                                margin: .75em auto 0;
+                                display: table;
+                                i{
+                                    font-size: 2.5em;
+                                    cursor: pointer;
+                                }
+                                input{
+                                    width: 2.5em;
+                                    text-align: center;
+                                    border: 0;
+                                    height: 2.25em;
+                                    padding: .1em .5em;
+                                    font-size: 2.25em;
+                                    font-family:"Crete Round";
+                                }
+                            }
+                            .total{
+                                margin-left: 1em;
+                                font-weight: bold;
+                                font-style: italic;
+                                font-size: .9em;
+                                color: #888;
+                            }
+                        }
+                        button{
+                            margin: 0 auto;
+                            display: block;
+                        }
+                    }
+                    .charts{
+                        margin-top: 1.25em;
+                        .tab-content{
+                            padding: .5em .25em;
+                            p{
+                                line-height: 1.15;
+                                font-size: .85em;
+                            }
+                        }
+                        .progress{
+                            margin-bottom: 1px;
+                            height: 25px;
+                            box-shadow: none;
+                            .progress-bar{
+                                border-bottom-right-radius: 15px;
+                                border-top-right-radius: 15px;
+                                border-bottom-left-radius: 0;
+                                border-top-left-radius: 0;
+                                font-size: .9em;
+                                font-family: "Noto Serif TC";
+                                padding-top: 2px;
+                                color: black;
+                            }
+                        }
+                    }
+                    .descript{
+                        ul{
+                            li{
+                                list-style-type: none;
+                                font-size: 1em;
+                                margin-top: .5em;
+                                i{
+                                    font-size: 1.25em;
+                                    margin-right: .5em;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#weedModal{
+    .modal-dialog{
+        width: 70%;
+        .modal-content{
+            .modal-header{
+                h2{
+                    float: left;
+                }
+            }
+            .modal-body{
+                display: inline-block;
+                .left{
+                    padding-right: .5em;
+                    width: 50%;
+                    float: left;
+                    display: block;
+                    img{
+                        height: 200px;
+                        width: 200px;
+                        margin: 0 auto 1.5em;
+                        border-radius: 50%;
+                        display: block;
+                    }
+                    p{
+                        line-height: 1.2;
+                    }
+                }
+                .right{
+                    padding-right: 1.5em;
+                    padding-left: .5em;
+                    width: 50%;
+                    float: left;
+                    display: block;
+                    .rating{
+                        i{
+                            display: inline;
+                            font-size: 2em;
+                            color: #FFD700;
+                        }
+                    }
+                    .grade{
+                        margin-top: .5em;
+                        font-size: 1.65em;
+                        font-family:"Crete Round";
+                    }
+                    .addBasket{
+                        form{
+                            width: 100%;
+                            select{
+                                font-size: 1.25em;
+                                height: 2.5em;
+                            }
+                            .quantity{
+                                margin: .75em auto 0;
+                                display: table;
+                                i{
+                                    font-size: 2em;
+                                    cursor: pointer;
+                                }
+                                input{
+                                    width: 2.5em;
+                                    text-align: center;
+                                    border: 0;
+                                    height: 2.25em;
+                                    padding: .1em .5em;
+                                    font-size: 2.25em;
+                                    font-family:"Crete Round";
+                                }
+                            }
+                            button{
+                                margin: 0 auto;
+                                display: block;
+                                transition:0.5s linear all;
+                            }
+                            .total{
+                                margin-left: 1em;
+                                font-weight: bold;
+                                font-style: italic;
+                                font-size: .9em;
+                                margin-top: -1.7em;
+                                float: right;
+                                color: #888;
+                            }
+                        }
+                    }
+                    .charts{
+                        margin-top: 1.25em;
+                        .progress{
+                            margin-bottom: 1px;
+                            height: 25px;
+                            box-shadow: none;
+                            .progress-bar{
+                                border-bottom-right-radius: 15px;
+                                border-top-right-radius: 15px;
+                                border-bottom-left-radius: 0;
+                                border-top-left-radius: 0;
+                                font-size: .9em;
+                                font-family: "Noto Serif TC";
+                                padding-top: 2px;
+                            }
+                        }
+                    }
+                    .descript{
+                        ul{
+                            li{
+                                list-style-type: none;
+                                font-size: 1em;
+                                margin-top: .5em;
+                                i{
+                                    font-size: 1.25em;
+                                    margin-right: .5em;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#basketModal{
+    .modal-body{
+        thead{
+            font-family:"Crete Round";
+            font-size: 1.15em;
+            &:last-child{
+                font-size: 1.25em;
+                tr{
+                    th{
+                        &:last-child{
+                            text-align: right;
+                            font-size: 1.3em;
+                            letter-spacing: 1px;
+                            font-family: "Noto Serif TC";
+                        }
+                    }
+                }
+            }
+            &.total{
+                tr{
+                    th{
+                        padding-top: 2px;
+                        padding-bottom: 2px;
+                        font-size: .9em;
+                        text-align: right;
+                        border-bottom: 0;
+                        border-top: 0;
+                        &:nth-child(2){
+                            padding-right: 1.5em;
+                            font-size: .85em;
+                        }
+                    }
+                    &:nth-child(1){
+                        border-top: 1px solid #dddddd;
+                    }
+                    &:last-child{
+                        border-top: 1px solid #dddddd;
+                    }
+                }
+            }
+        }
+        tbody{
+            font-family: "Noto Serif TC";
+            font-size: 1.05em;
+            tr{
+                td{
+                    padding-top: 3px;
+                    padding-bottom: 3px;
+                }
+            }
+        }
+        .confirmText{
+            p{
+                font-size: 1.1em;
+                line-height: 1.35;
+            }
+            h4{
+                font-size: 1.3em;
+                text-align: center;
+            }
+        }
+    }
+    .modal-footer{
+        button{
+            font-family: "Noto Serif TC";
+            &.left-side{
+                float: left;
+            }
+            &.right-side{
+                float: right;
+            }
+        }
+    }
+}
+
+header{
+    nav{
+        .container{
+            &>.basket{
+                position: absolute;
+                display: inline-block;
+                color: #9d9d9d;
+                font-size: 1.3em;
+                left: 50%;
+                top: .8em;
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+                .badge{
+                    margin-top: -2em;
+                    margin-left: -.5em;
+                }
+                &:hover{
+                    color: white;
+                    .badge{
+                        color: #9d9d9d;
+                        background-color: white;
+                    }    
+                }
+            }
+        }
+        .navbar-brand{
+            font-weight: 700;
+            font-size: 3.75rem; 
+            font-family:"Crete Round";
+            padding: 3px;
+            img{
+                position: absolute;
+                left: 10%;
+            }
+        }
+        #navbar{
+            ul{
+                li{
+                    margin-top: 1.4rem;
+                    font-family: "Noto Serif TC";
+                    font-weight: 400;
+                    font-size: 1.8rem;
+                    color: #9d9d9d;
+                    &.lang{
+                        border-left: 1px solid @mainBackground;
+                    }    
+                    &:last-child{
+                        font-size: 1.3rem;
+                        margin-top: 1.5rem;
+                    }
+                    &.name-user{
+                        margin-left: 15px;
+                    }
+                    a{
+                        display: inline;
+                        text-transform: capitalize;
+                        &.name-user{
+                            padding-left: 5px;
+                            text-transform: uppercase;
+                            i{
+
+                            }
+                        }
+                        .badge{
+                            margin-top: -2em;
+                            margin-left: -.5em;
+                        }
+                        &:hover{
+                            .badge{
+                                color: #9d9d9d;
+                                background-color: white;
+                            }    
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.link-bar1{
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    .row{
+        background-color: #bdbdbd;
+        padding: .1em 0;
+        ul{
+            display: table;
+            margin: .25em auto;
+            font-family:"Crete Round";
+            li{
+                display: inline;
+                list-style-type: none;
+                a{
+                    padding: .1em .75em;
+                    border-right: 1px solid @mainBackground;
+                    font-size: 1.25em;
+                    color: @main-color;
+                    display: inline-block;
+                }
+                &:last-child{
+                    a{
+                        border-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#faq{
+    h1, h3{
+        font-family:"Crete Round";
+    }
+    .modal-body{
+        padding: 1em 2em;
+        ul{
+            margin-left: 1em;
+            li{
+                margin-bottom: 1.6em;
+                line-height: 1.3;
+                .bold{
+                    font-weight: bold;
+                    color: @weed-color-hybrid;
+                }
+            }
+            ol{
+                margin-left: 2em;
+                margin-top: .5em;
+            }
+        }
+    }
+}
+#howToPay{
+    .modal-body{
+        padding: .5em 1.5em 1em 3em;
+        line-height: 1.35;
+        ol{
+            ul{
+                margin-left: 1.5em;
+            }
+        }
+    }
+}
+.section1{
+    &>.row{
+        display: flex;
+        .shop-by-type{
+            padding-top: 1em;
+            padding-bottom: 1em;
+            background-image: url('../images/tea_type/99.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            div{
+                background-color: @green-standard;
+                width: 100%;
+                padding: .75em 0;
+                display: table;
+                p{
+                    text-transform: uppercase;
+                    text-align: center;
+                    color: @mainBackground;
+                    &:nth-child(1){
+                        font-family: "Noto Serif TC";
+                        font-weight: 400;
+                        font-size: 1.8rem;
+                    }
+                    &:nth-child(2){
+                        font-family: "Crete Round";
+                        font-weight: 700;
+                        font-size: 3.75rem;
+                    }
+                }
+            }
+        }
+        .type-of-tea{
+            .row{
+                .tea-groups{
+                    margin-bottom: 15px;
+                    padding-left: 7px;
+                    padding-right: 7px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    &:nth-child(n+5){
+                        margin-bottom: 0;
+                    }
+                    &:hover{
+                        opacity: .6;
+                    }
+                    div{
+                        background-color: white;
+                        width: 100%;
+                        padding: .25em 0;
+                        .image{
+                            border-radius: 50%;
+                            overflow: hidden;
+                            img{
+                                margin: 0 auto;
+                                display: table;
+                                width: 100%;
+                            }
+                        }
+                        h3{
+                            font-family: "Crete Round";
+                            text-align: center;
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .slogan{
+        margin: 4.5em 0;
+        padding: .5em;
+        h2{
+            text-align: center;
+            font-family: "Crete Round";
+            width: 100%;
+            font-size: 4rem;
+        }
+        a{
+            margin: .5em auto;
+            display: table;
+            box-shadow: 0 0 5px 1px @main-color;
+            font-family: "Noto Serif TC";
+        }
+    }
+}
+
+/** ---------------------------------------------------------------------- */
+.section2{
+    margin: 1rem auto 4rem;
+    .row{
+        display: flex;
+        .col-sm-4{
+            text-align: center;
+            color: @mainBackground;
+            margin-bottom: 1.25rem;
+            display: grid;
+            div{
+                padding: 1em .5em;
+                background-color: @main-color;
+                border-radius: 3px;
+                i{
+                    font-size: 8rem;
+                }
+                p{
+                    font-size: 4rem;
+                    font-family: "Crete Round";
+                    text-transform: capitalize;
+                    margin-top: 1rem;
+                    margin-bottom: .5rem;
+                    line-height: 1.2;
+                    span{
+                        font-size: 2.15rem;
+                        display: block;
+                        margin-top: 1.25rem;
+                        font-family: "Noto Serif TC";
+                    }
+                }
+            }
+        }
+    }
+}
+/** ---------------------------------------------------------------------- */
+.section3{
+    margin: 4rem auto;
+    h2{
+        font-family: "Crete Round";
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 4rem;
+    }
+    .row{
+        .col-md-5{
+            width: 18%;
+            height: 260px;
+        }
+        .col-xs-4{
+            margin: 2.5rem 1% 0;
+            border-radius: 4px;
+            background-color: white;
+            box-shadow: 3px 3px 20px rgba(0,0,0,.15);
+            cursor: pointer;
+            &:hover{
+                background-color: rgba(240,255,190,.6);
+            }
+            .image{
+                border-radius: 50%;
+                overflow: hidden;
+                margin: 0 auto;
+                width: 100%;
+                padding: 5px;
+                img{
+                    width: 80%;
+                    border-radius: 50%;
+                    margin: .5rem auto;
+                    border:3px solid @main-color;
+                    display: block;
+                }
+            }
+            h3{
+                text-align: center;
+                font-family: "Noto Serif TC";
+                font-size: 1.75rem;
+                vertical-align: bottom;
+                line-height: 1.2;
+                padding: 0 1rem;
+                margin-top:5px;                    
+            }
+            p{
+                font-size: .9em;
+                margin: 0 auto;
+                display: table;
+            }
+        }
+    }
+    .loadMore{
+        margin: 3rem auto;
+        display: table;
+        cursor: pointer;
+        p{
+            text-align: center;
+            font-size: 1.75rem;
+            font-family: "Noto Serif TC";
+            text-transform: capitalize;
+            margin-bottom: 0;
+        }
+        i{
+            font-size: 4rem;
+            margin: 0 auto;
+            display: table;
+        }
+    }
+}
+/** ---------------------------------------------------------------------- */
+.section4{
+    margin-top: 8rem;
+    margin-bottom: 3rem;
+    .row{
+        font-family: "Noto Serif TC";
+        .operation{
+            border: 2px solid @main-color;
+            border-radius: 6px;
+            padding: 3rem .75em .75em .75em;
+            i{
+                position: absolute;
+                font-size: 6rem;
+                top: -3.05rem;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+                color: @main-color;
+                background-color: @mainBackground;
+            }
+            p{
+                font-weight: 700;
+                text-align: center;
+                font-size: 3.5rem;        
+                line-height: 1;
+                font-family: "Crete Round";
+                &:nth-child(3){
+                    font-weight: 400;
+                    text-align: center;
+                    font-size: 2.25rem;        
+                }    
+                &:nth-child(5){
+                    font-weight: 700;
+                    text-align: center;
+                    font-size: 2.25rem;        
+                    margin-top: 2.5rem;
+                }    
+                &:nth-child(6){
+                    font-weight: 400;
+                    text-align: center;
+                    font-size: 2rem;
+                }    
+                &:nth-child(7){
+                    font-weight: 400;
+                    text-align: center;
+                    font-size: 1.75rem;
+                }     
+                &:nth-child(8){
+                    font-weight: 400;
+                    text-align: center;
+                    font-size: 1.75rem;
+                }     
+            }
+            form{
+                margin: 1em auto;
+                display: table;
+                width: 70%;
+                padding-left: 2.2em;
+                .input-group{
+                    display: inline;
+                    button{
+                        text-transform: capitalize;
+                    }
+                    input{
+                        width: 70%;
+                    }
+                }
+            }
+        }
+    }
+}
+/** ---------------------------------------------------------------------- */
+footer{
+    margin-top: 6em;
+    margin-bottom: 2em;
+    position: relative;
+    font-family: "Noto Serif TC";
+    &>.row{
+        ul{
+            font-size: 1em;
+            font-family: "Crete Round";
+            margin: 0 auto;
+            display: table;
+            li{
+                display: inline;
+                a{
+                    font-weight: 400;
+                    border-right: 1px solid @main-color;
+                    padding: 0 .75em;
+                    color: @main-color;
+                }
+                &:last-child{
+                    a{
+                        border-right: 0;
+                    }
+                }
+        }
+        }
+        &>a{
+            color: @main-color;
+            position: absolute;
+            right: 0;
+            bottom: 1em;
+            i{
+                font-size: 1.5em;
+                border: 2px solid @main-color;
+                width: 1.3em;
+                height: 1.3em;
+                padding-left: 2px;
+                border-radius: 50%;
+            }
+        }
+    }
+    p{
+        margin-top: 1em;
+        margin-bottom: 0;
+        text-align: center;
+        font-size: .9em;
+    }
+}
+
+.section1s{
+    margin: 2.5em auto 0;
+    font-family: "Noto Serif TC";
+    .row{
+        .col-sm-3{
+            margin-bottom: 3em;
+            &:nth-child(1){
+                .image{
+                    background-color: @weed-color-sativa;
+                }
+            }
+            &:nth-child(2){
+                .image{
+                    background-color: @weed-color-hybrid;
+                }
+            }
+            &:nth-child(3){
+                .image{
+                    background-color: @weed-color-indica;
+                }
+            }
+            &:nth-child(4){
+                .image{
+                    background-color: @weed-color-concent;
+                }
+            }
+            .image{
+                overflow: hidden;
+                border-radius: 50%;
+                width:75%;
+                margin: 0 auto;
+                img{
+                    padding: 10px;
+                    border-radius: 50%;
+                    width: 100%;
+                }
+            }
+            h1{
+                text-align: center;
+                font-family: "Crete Round";
+                margin-top: 5px;
+                font-size: 2.1em;
+            }   
+        }        
+    }
+}
+.section2s{
+    h2{
+        text-align: center;
+        font-family: "Crete Round";
+        text-transform: uppercase;
+        font-size: 3.5em;
+        margin: 1em 0;
+        text-shadow: 0 0 2px @main-color;
+    }
+    .row{
+        .col-xs-6{
+            padding: 0 .75em;
+            &>div{
+                padding: 5px 5px 1px 5px;
+                border-radius: 8px;                
+                box-shadow: 2px 3px 10px rgba(130,130,130,.3);
+                &.bk-sahiva{
+                    background-color: @weed-color-sativa;
+                }
+                &.bk-indica{
+                    background-color: @weed-color-indica;
+                }    
+                &.bk-hybrid{
+                    background-color: @weed-color-hybrid;
+                }    
+                &.bk-concent{
+                    background-color: @weed-color-concent;
+                }
+                &:hover{
+                    opacity: .6;
+                }
+                box{
+                    border-radius: 8px;
+                    display: block;
+                    padding-top: .5em;
+                    background-color: white;
+                    cursor: pointer;
+                    .image{
+                        img{
+                            border-radius: 50%;
+                            width: 70%;
+                            margin: 0 auto;
+                            display: table;
+                            -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.5);
+                            -moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.5);
+                            box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.5);
+                        }
+                    }
+                    h3{
+                        text-align: center;
+                        margin-top: 5px;
+                        padding: .25em 0 .25em;
+                        text-transform: capitalize;
+                    }
+                    h4{
+                        text-align: center;
+                        padding-bottom: .4em;
+                        font-style: italic;
+                        font-size: .85em; 
+                    }
+                }         
+            }
+            margin-bottom: 2.5em;
+        }
+    }
+}
+
+.section3s{
+    .row{
+        p{
+            text-align: justify;
+            font-size: 1.1em;
+            line-height: 1.35;
+        }
+    }
+}
+
+.section1ad{
+    .head{
+        margin-top: 1em;
+        div{
+            text-align: center;
+            text-transform: uppercase;
+            font-family: "Crete Round";
+            font-size: 1.5em;
+            a{
+                border: 1px solid @main-color;
+                border-radius: 4px;
+                margin: 5px;
+                display: block;
+                padding: .5em;
+                text-decoration: none;
+                color: @main-color;
+                &.active{
+                    background-color: @main-color;
+                    color: @mainBackground;
+                }
+            }
+        }
+    }
+    .body{
+        margin: 1em 1em;
+        .table{
+            tbody{
+                tr{
+                    font-family: "Noto Serif TC";
+                    td{
+                        text-align: center;
+                        i{
+                            font-size: 1.3em;
+                        }
+                    }
+                }
+            }
+        }
+        &.profiles{
+            tbody{
+                tr{
+                    td{
+                        &:nth-child(2){
+                            text-align: left;
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+            }
+        }
+        #footer{
+            select{
+                padding: .25em;
+                border-radius: 5px;
+                option{
+                    font-size: .9em;
+                    padding-top: .3em;
+                    padding-bottom: .3em;
+                }
+            }
+            ul{
+                margin-top: 0;
+            }
+        }
+    }
+    
+    .user-profiles{
+        .uib-pagination{
+            margin-top: 0;
+        }
+        table{
+            thead{
+                tr{
+                    th{
+                        text-align: center;
+                    }
+                    &:nth-child(1){
+                        text-align: center;
+                        font-family: "Noto Serif TC";
+                        font-size: 1.1em;        
+                    }
+                    &:nth-child(2){
+                        text-align: center;
+                        text-transform: uppercase;
+                        font-family: "Crete Round";
+                        font-size: 1.1em;        
+                    }
+                }
+            }
+            tbody{
+                tr{
+                    td{
+                        text-align: center;
+                        &:nth-child(1){
+                            text-align: left;
+                        }
+                        &:nth-child(2){
+                            text-align: left;
+                            text-transform: capitalize;
+                        }
+                        &:nth-child(5){
+                            text-align: left;
+                            font-size: .85em;      
+                            text-transform: capitalize;  
+                        }    
+                        i{
+                            font-size: 1.3em;
+                        }
+                        &.last_col{
+                            span{
+                                cursor: pointer;
+                                font-size: 1.35em;
+                                padding: 0 .2em;
+                            }
+                        }
+                        &.purchase-list{
+                            i{
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #show_purchase_list{
+            .modal-body{
+                table{
+                    font-size: .9em;
+                    thead{
+                        th{
+                            text-transform: capitalize;
+                            font-family: "Crete Round";
+                        }
+                    }
+                    tbody{
+                        td{
+                            padding: 1px 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #show_info_user{
+        .modal-body{
+            display: inline-block;
+            form{
+                .col-form-label{
+                    text-transform: capitalize;
+                    sub{
+                        opacity: .7;
+                    }
+                }
+                input{
+                    &.cp{
+                        text-transform: uppercase;
+                    }
+                }
+                .docs{
+                    a{
+                        position: relative;
+                        display: inline-block;
+                        img{
+                            width:100px;
+                            max-height:100px;
+                            object-fit: contain;
+                            border-radius: 5px;
+                        }
+                        .removed{
+                            position: absolute;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(240,255,190,.5);
+                            &:after{
+                                content: "Removed";
+                                color: black;
+                                font-size: 1em;
+                                font-family: "Noto Serif TC";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .tea{
+        thead{
+            tr{
+                th{
+                    text-transform: uppercase;
+                    text-align: center;
+                    font-family: "Crete Round";
+                }
+            }    
+        }
+        tbody{
+            tr{
+                td{
+                    text-align: center;
+                    text-transform: capitalize;
+                    &:nth-child(2){
+                        text-align: left;
+                    }
+                    &:nth-child(3){
+                        text-align: right;
+                        font-size: 1.1em;
+                    }
+                    i{
+                        font-size: 1.35em;
+                        &.clinent-info-adm{
+                            font-size: .8em;
+                            margin-left: .5em;
+                            cursor: pointer;
+                            padding: 4px 5px;
+                            border:1px solid rgba(0,0,0,0);
+                            border-radius: 3px;
+                            &:hover{
+                                border-color: #ccc;
+                                color: #888;
+                            }
+                        }
+                    }
+                    &.last_col{
+                        span{
+                            font-size: 1.35em;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+        #show_info_tea{
+            .modal-body{
+                form{
+                    article{
+                        border: 1px solid #aaaaaa;
+                        display: grid;
+                        border-radius: 5px;
+                        margin: 0 .15em .35em .15em;
+                        padding-top: .5em;
+                        label{
+                            text-transform: capitalize;
+                        }
+                        .row{
+                            padding-left: 15px;
+                            padding-right: 15px;
+                        }
+                    }
+                    table{
+                        thead{
+                            th{
+                                text-transform: uppercase;
+                            }
+                            &.total{
+                                tr{
+                                    th{
+                                        padding-top: 3px;
+                                        padding-bottom: 3px;
+                                        border: 0;
+                                        &:nth-child(2){
+                                            text-align: right;
+                                        }
+                                        &:nth-child(3){
+                                            font-family: "Noto Serif TC";
+                                            font-size: .95em;
+                                        }
+                                    }
+                                    &:last-child{
+                                        th{
+                                            border-top: 1px solid #aaaaaa;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        tbody{
+                            td{
+                                text-align: center;
+                                text-transform: capitalize;
+                                padding-top: 3px;
+                                padding-bottom: 3px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .modal-footer{
+            .btn-danger{
+                float: left;
+            }
+        }
+    }
+
+    .weed{
+        thead{
+            tr{
+                th{
+                    &:nth-child(2){
+                        text-align: center;
+                        text-transform: uppercase;
+                        font-family: "Crete Round";
+                    }
+                }
+            }    
+        }
+        tbody{
+            tr{
+                td{
+                    text-align: center;
+                    text-transform: capitalize;
+                    &:nth-child(2){
+                        text-align: left;
+                    }
+                    &:nth-child(3){
+                        text-align: right;
+                        font-size: 1.1em;
+                    }
+                    i{
+                        font-size: 1.35em;
+                    }
+                    &.last_col{
+                        span{
+                            font-size: 1.35em;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+        #show_info_weed{
+            .modal-body{
+                form{
+                    article{
+                        border: 1px solid #aaaaaa;
+                        display: grid;
+                        border-radius: 5px;
+                        margin: 0 .15em .35em .15em;
+                        padding-top: .5em;
+                        label{
+                            text-transform: capitalize;
+                        }
+                    }
+                    table{
+                        thead{
+                            th{
+                                text-transform: uppercase;
+                            }
+                            &.total{
+                                th{
+                                    text-align: right;
+                                    padding-top: 4px;
+                                    padding-bottom: 4px;
+                                    &:nth-child(3){
+                                        padding-right: 2em;
+                                        max-width: 5em;
+                                   } 
+                                }
+                            }
+                        }
+                        tbody{
+                            td{
+                                text-align: center;
+                                text-transform: capitalize;
+                                padding-top: 3px;
+                                padding-bottom: 3px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #basketModal{ 
+        .modal-body{
+            thead{
+                &:last-child {
+                    font-size: 1em;
+                    tr{ 
+                        th{
+                            &:last-child {
+                                font-size: 1em;
+                            }
+                        }
+                    }
+                }
+            }
+            tbody {
+                font-size: .8em;
+            }
+        }
+    }
+
+}
+
+/** -------- contact us footer -------------------------------------------------------------- */
+#contactus{
+    .modal-header{
+        h3{
+            text-transform: capitalize;
+        }
+    }
+    .modal-body{
+        form{
+            textarea{
+                max-width: 100%;
+                min-width: 50%;
+                max-height: 8.25em;
+            }
+        }
+    }
+    .errMessage{
+        margin-left: 3em;
+    }
+}
+
+/* ---------------------------------------------------------------------- */
+@media screen and (min-width: @sm-size){
+    .col-xs-5,
+    .col-sm-5,
+    .col-md-5,
+    .col-lg-5 {
+        position: relative;
+        min-height: 1px;
+        padding-right: .5em;
+        padding-left: .5em;
+        width: 20%;
+        float: left;
+    }
+
+    .section1{
+        .row{
+            .type-of-tea{
+                .row{
+                    .tea-groups{
+                        &:nth-child(6){
+                            margin-bottom: 0;
+                        }
+                        &:nth-child(7){
+                            margin-bottom: 0;
+                        }
+                        &:nth-child(8){
+                            margin-bottom: 0;
+                        }
+                        &:nth-child(9){
+                            margin-bottom: 0;
+                        }
+                        &:nth-child(10){
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+/** -------- Tablet landscape -------------------------------------------------------------- */
+@media screen and (min-width: @md-size) and (max-width: @lg-size) and (orientation: landscape){
+    #teaOnlyToShowModal{
+        font-size: 1.1em;
+    }
+    .section3{
+        .row{
+            .col-md-5{
+                height: 220px;
+            }
+        }
+    }
+    #productModal{
+        .modal-dialog{
+            .modal-content{
+                .modal-body{
+                    .right{
+                        .rating{
+                            i{
+                                font-size: 1.5em;
+                            }
+                        }
+                        .charts{
+                            .nav-tabs{
+                                li{
+                                    a{
+                                        font-size: .85em;
+                                        padding-left: 10px;
+                                        padding-right: 10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/** --------- Tablet portrait -------------------------------------------------------------- */
+@media screen and (min-width: @md-size) and (max-width: @lg-size) and (orientation: portrait){
+    #teaOnlyToShowModal{
+        font-size: 1em;
+    }
+    .section1s .row .col-sm-4 .image {
+        width: 90%;
+    }
+    .section3{
+        .row{
+            .col-md-5{
+                height: 210px;
+            }
+        }
+    }
+    #productModal{
+        .modal-dialog{
+            width: 80%;
+            .modal-content{
+                .modal-body{
+                    .right{
+                        .rating{
+                            i{
+                                font-size: 1.5em;
+                            }
+                        }
+                        .addBasket{
+                            form{
+                                .total{
+                                    display: block;
+                                    margin-top: 3px;
+                                }
+                            }
+                        }
+                        .charts{
+                            .nav-tabs{
+                                li{
+                                    a{
+                                        font-size: .85em;
+                                        padding-left: 10px;
+                                        padding-right: 10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** --------- Mobile & Tablet portrait -------------------------------------------------------------- */
+@media screen and (max-width: @md-size) and (orientation: portrait){
+    #productModal{
+        .modal-dialog{
+            width: 80%;
+            .modal-content{
+                .modal-body{
+                    .right{
+                        .rating{
+                            i{
+                                font-size: 1.5em;
+                            }
+                        }
+                        .charts{
+                            .nav-tabs{
+                                li{
+                                    a{
+                                        font-size: .85em;
+                                        padding-left: 10px;
+                                        padding-right: 10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+
+@media screen and (max-width: @md-size) and (orientation: portrait){
+    .section2{
+        .row{
+            .col-sm-4{
+                &:nth-child(2){
+                    div{
+                        p{
+                            font-size: 3.25rem;
+                            span{
+                                font-size: 2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-with: @smd-size) and (max-width: @md-size){
+    .section2{ 
+        .row{ 
+            .col-sm-4{
+                div{
+                    p{
+                        font-size: 3rem;
+                    }
+                }
+                .image {
+                    width: 90%;
+                }
+            }
+        }
+    }
+    .section3{
+        .row{
+            .col-xs-6{
+                div{
+                    h3{
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ----- mobile phone - portrait ----- */
+@media screen and (max-width: @smd-size) and (orientation: portrait){
+    header{
+        nav{
+            .container{
+                &>.basket{
+                    margin-left: 4em;
+                }
+            }
+            .navbar-brand{
+                font-size: 3rem; 
+            }
+            #navbar{
+                ul{
+                    li{
+                        &.lang{
+                            border-left: none;
+                        }
+                    }
+                }
+            }
+        }
+        .logged{
+            #navbar_logged{
+                ul{
+                    li{
+                        &:nth-child(2){
+                            margin-left: 15px;
+                            a{
+                                padding-left: 5px;
+                            }
+                        }
+                        &:nth-child(3){
+                            margin-left: 15px;
+                            border-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .link-bar1{
+        .row{
+            ul{
+                li{
+                    a {
+                        font-size: 1.25em;
+                    }
+                }
+            }
+        }
+    }
+    .section1{
+        &>.row{
+            display: block;
+            .shop-by-type{
+                display: none;
+            }
+            .type-of-tea{
+                .row{
+                    .tea-groups{
+                        padding-left: 8px;
+                        padding-right: 8px;
+                        div{
+                            .image{
+                                img{
+                                    width: 100%;
+                                }
+                            }
+                            h3{
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .slogan{
+            margin: 2em 0;
+            h2{
+                font-size: 2.8rem;
+            }
+        }
+    }
+
+    .section1s{
+        .row{
+            .col-sm-4{
+                .image{
+                    width: 40%;
+                }
+                h1{
+                    font-size: 1.8em;
+                }
+            }
+        }
+    }
+
+    .section2{
+        .row{
+            display: block;
+            .col-sm-4{
+                div{
+                    i{
+                        font-size: 4.5rem;
+                    }
+                    p{
+                        font-size: 2.25rem;
+                        span{
+                            font-size: 1.25rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .section2s{
+        h2{
+            font-size: 2.5em;
+        }
+        .row{
+            .col-xs-6{
+                &>div{
+                    h3{
+                        font-size: 1.15em;
+                    }
+                }
+            }
+        }
+    }
+
+    .section3{
+        h2{
+            font-size: 2em;
+        }
+        .row{
+            .col-md-5{
+                width: 48%;
+                height: 220px;
+            }
+            .col-xs-4{
+                h3{
+                    font-family: "Crete Round";
+                    font-size: 1.1em;
+                }
+                .image{
+                    width: 90%;
+                }
+            }
+        }
+    }
+
+    .section4{
+        margin: 8rem 2rem 3rem;
+        .row{
+            .operation{
+                p{
+                    font-size: 1.1em;
+                    &:nth-child(3){
+                        font-size: 2rem;        
+                    }    
+                    &:nth-child(4){
+                        font-size: 2rem;        
+                    }    
+                    &:nth-child(5){
+                        font-size: 1.75rem;
+                    }    
+                    &:nth-child(6){
+                        font-size: 1.4rem;
+                    }     
+                }
+                form {
+                    width: 90%;
+                    padding-left: 0em;
+                    .input-group{
+                        input {
+                            width: 100%;
+                        }
+                        button {
+                            margin: 5px 25%;
+                            width: 50%;
+                        }
+                     }
+                }
+                i{
+                    font-size: 5rem;
+                }
+            }
+        }
+    }
+
+    .section1s{
+        .row{
+            .col-sm-3{
+                .image{
+                    img{
+                        padding: 7px;
+                    }
+                }
+                h1{
+                    font-size: 1.55em;
+                }
+            }
+        }
+    }
+
+    footer{
+        margin-top: 5em;
+        &>.row{
+            ul{
+                font-size: .9em;
+                display: grid;
+                li{
+                    margin: 0 auto;
+                    display: grid;
+                    a {
+                        border-right: 0;
+                        padding: .5em 1em;
+                        color: #212529;
+                    }
+                }
+            }
+            &>a{
+                display: none;
+            }
+        }
+        p{
+            font-size: .7em;
+        }
+    }
+
+    #userProfileModal{ 
+        .modal-body{ 
+            .tab-content{ 
+                .orders{
+                    table {
+                        font-size: .75em;
+                    }
+                }
+            }
+        }
+    }
+
+    #basketModal{
+        .modal-body{
+            thead{
+                font-size: .9em;
+                &:last-child{
+                    font-size: 1em;
+                    tr{
+                        th{
+                            &:last-child{
+                                font-size: 1em;
+                            }
+                        }
+                    }
+                }
+            }
+            tbody{
+                font-size: .9em;
+            }
+            .confirmText{
+                p{
+                    font-size: .9em;
+                }
+            }
+        }
+    }
+
+    #teaOnlyToShowModal{
+        .modal-body{
+            table{
+                font-size: .65em;
+            }
+        }
+    }
+
+    #faq{
+        font-size: 80%;
+        .modal-body{
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+    }
+
+    #productModal{
+        .modal-dialog{
+            width: 95%;
+            .modal-content{
+                .modal-header{
+                    h2{
+                        font-size: 1.75em;
+                    }
+                }                
+                .modal-body{
+                    .left{
+                        padding-right: .5em;
+                        width: 100%;
+                        margin-top: 1.5em;
+                        img{
+                            height: 150px;
+                            width: 150px;
+                        }
+                        p{
+                            font-size: .8em;
+                        }
+                    }
+                    .right{
+                        padding-right: 1.5em;
+                        padding-left: .5em;
+                        width: 100%;
+                        .rating{
+                            i{
+                                font-size: 1.5em;
+                            }
+                        }
+                        .grade{
+                            font-size: 1.4em;
+                        }
+                        .addBasket{
+                            form{
+                                width: 100%;
+                                select{
+                                    font-size: 1.15em;
+                                    height: 2.25em;
+                                }
+                                .quantity{
+                                    margin: .75em auto 0;
+                                    display: table;
+                                    i{
+                                        font-size: 2.5em;
+                                        cursor: pointer;
+                                    }
+                                    input{
+                                        width: 2.5em;
+                                        text-align: center;
+                                        border: 0;
+                                        height: 2.25em;
+                                        padding: .1em .5em;
+                                        font-size: 2.25em;
+                                        font-family:"Crete Round";
+                                    }
+                                }
+                            }
+                        }
+                        .charts{
+                            margin-top: 1.25em;
+                            .progress{
+                                margin-bottom: 1px;
+                                height: 20px;
+                                .progress-bar{
+                                    font-size: .75em;
+                                    padding-top: 0;
+                                }
+                            }
+                        }
+                        .descript{
+                            ul{
+                                li{
+                                    font-size: .8em;
+                                    margin-top: .5em;
+                                    i{
+                                        font-size: 1.25em;
+                                        margin-right: .5em;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+    /* ----- mobile phone - portrait ----- */
+    @media screen and (orientation: landscape) and (max-height: @smd-size){
+        .section1{
+            .slogan{
+                margin: 2.5em 0;
+                h2{
+                    font-size: 2.75rem;
+                }
+            }
+            .row{
+                .type-of-tea{
+                    .row{
+                        .tea-groups{
+                            div{
+                                h3{
+                                    font-size: 1.1em;
+                                }
+                            }
+                        }
+                    }
+                }
+                .shop-by-type{
+                    div{
+                        p{
+                            &:nth-child(1){
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .section2{
+            .row{
+                .col-sm-4{
+                    div{
+                        i {
+                            font-size: 4rem;
+                        }
+                        p{
+                            font-size: 2rem;
+                            span{
+                                font-size: 1.1em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .section3{
+            h2{
+                font-size: 3.25rem;
+            }
+            .row{
+                .col-md-5 {
+                   height: 210px;
+                }
+                .col-xs-4{
+                    h3{
+                        font-size: 1.5rem;
+                    }
+                    p{
+                        font-size: .8em;
+                    }
+                }
+            }
+        }
+        .section4{
+            .row{
+                .operation{
+                    i {
+                        font-size: 5rem;
+                    }
+                    p{
+                        font-size: 2.5rem;
+                    }
+                }
+            }
+        }
+        .section2s{
+            h2 {
+                font-size: 2.5em;
+            }
+        }
+        #productModal{
+            .modal-dialog {
+                width: 85%;
+                margin: 0 auto;
+                h2{
+                    font-size: 1.7em;
+                }
+                .modal-content{
+                    .modal-body{
+                        .right{
+                            .rating{
+                                i{
+                                    font-size: 1.5em;
+                                }
+                            }
+                            .grade{
+                                font-size: 1.4em;
+                            }
+                        }
+                        .left{
+                            img {
+                                height: 150px;
+                                width: 150px;
+                            }
+                            p{
+                                font-size: .75em;
+                                line-height: 1.4;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }

@@ -1,0 +1,416 @@
+<div class="container section1ad">
+    <div class="row head">
+        <div class="col-sm-4 col-md-4 col-lg-4"><a ng-class="admin_head_class[0]" ng-click="admin_head_clicked(0)">{{titles.section1Ad.orders[lang]}}</a></div>
+        <div class="col-sm-4 col-md-4 col-lg-4"><a ng-class="admin_head_class[1]" ng-click="admin_head_clicked(1)">{{titles.section1Ad.userProfiles[lang]}}</a></div>
+        <div class="col-sm-4 col-md-4 col-lg-4"><a ng-class="admin_head_class[2]" ng-click="admin_head_clicked(2)">{{titles.section1Ad.messages[lang]}}</a></div>
+    </div>
+
+    <div class="row body tea" ng-if="admin_head_class[0]">
+        <div class="col-xs-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><input type="text" class="form-control" ng-change="currentPage_orders=1" ng-model="cDate" value=""></th>
+                        <th><input type="text" class="form-control" ng-change="currentPage_orders=1" ng-model="cName" value=""></th>
+                        <th><input type="text" class="form-control" ng-change="currentPage_orders=1" ng-model="cCn" value=""></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th><button ng-click="dataRefreshPurchase()" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span></button></th>
+                    </tr>
+                    <tr>
+                        <th ng-click="sorting_command(0)">{{titles.section1Ad.orderDate[lang]}} <span class="{{glyphSort_command[0]}}"></span></th>
+                        <th ng-click="sorting_command(1)">{{titles.purchase.orderNo[lang]}} <span class="{{glyphSort_command[1]}}"></span></th>
+                        <th>{{titles.section1Ad.customerName[lang]}}</th>
+                        <th>{{titles.section1Ad.total[lang]}}</th>
+                        <th ng-click="sorting_command(2)">{{titles.section1Ad.moneyReceived[lang]}} <span class="{{glyphSort_command[2]}}"></span></th>
+                        <th ng-click="sorting_command(3)">{{titles.section1Ad.orderSent[lang]}} <span class="{{glyphSort_command[3]}}"></span></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in filtered = (purchasesInfo | orderBy:sortType_command:sortReverse_command
+                                                                | filter:{date:cDate}
+                                                                | filter:{cn:cCn}
+                                                        ) | startFrom: (currentPage_orders-1)*pageSize_orders | limitTo: pageSize_orders">
+                        <td>{{item.date | date:shortDate}}</td>
+                        <td>{{item.cn}}</td>
+                        <td>{{item.client.name}} <i class="fa fa-ellipsis-h clinent-info-adm" aria-hidden="true" ng-click="showClientFullInfo_admin(item.client)" data-toggle="modal" data-target="#show_info_user"></i></td>
+                        <td>{{item.total[4] | number:2}}$</td>
+                        <td><i ng-class="item.payed?'fa fa-check':'fa fa-times'" aria-hidden="true"></i></td>
+                        <td><i ng-class="item.sent?'fa fa-check':'fa fa-times'" aria-hidden="true"></i></td>
+                        <td class="last_col">
+                            <div>
+                                <span ng-click="full_show_purchase(item)" data-toggle="modal" data-target="#show_info_tea" class="glyphicon glyphicon glyphicon-zoom-in"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="footer" class="row">
+            <div class="col-xs-2 col-sm-2">
+                <select ng-model="pageSize_orders" class="form-control">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="99999">{{titles.section1Ad.all[lang]}}</option>
+                </select>
+            </div>
+            <div class="col-xs-7 col-sm-6">
+                <ul uib-pagination total-items="filtered.length" items-per-page="pageSize_orders" ng-model="currentPage_orders" max-size="maxSize" class="pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+            </div>
+            <button class="btn btn-danger" data-toggle="tooltip" title="{{titles.section1Ad.deletePending3days[lang]}}" ng-click="deletePendingPurchaseByAdm()">{{titles.section1Ad.deletePending[lang]}}</button>
+        </div>
+        
+        <!-- ---------------------------------------------------------------------------------------- -->
+        <div class="modal fade" id="show_info_tea" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="tea_facteur">
+                            <article>
+                                <div class="row">
+                                    <div class="form-group col-xs-6">
+                                        <label class="col-form-label">{{titles.purchase.orderNo[lang]}}</label>
+                                        <input type="text" class="form-control" ng-model="purchaseToShowAdmin.cn">
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <label class="col-form-label">{{titles.section1Ad.orderDate[lang]}}</label>
+                                        <input type="text"class="form-control" ng-model="purchaseToShowAdmin.date" readonly>
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <label class="col-form-label">{{titles.section1Ad.moneyReceived[lang]}}</label>
+                                        <input type="date" placeholder="YYYY-mm-dd" class="form-control" ng-model="purchaseToShowAdmin.payed">
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <label class="col-form-label">{{titles.section1Ad.orderSent[lang]}}</label>
+                                        <input type="date"  placeholder="YYYY-mm-dd" class="form-control" ng-model="purchaseToShowAdmin.sent">
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <label class="col-form-label">{{titles.section1Ad.trackNo[lang]}}</label>
+                                        <input type="text" class="form-control" ng-model="purchaseToShowAdmin.trackno">
+                                    </div>
+                                </div>
+                            </article>
+        
+                            <article class="row">
+                                <div class="form-group col-xs-12 col-sm-8">
+                                    <label class="col-form-label">{{titles.section1Ad.customerName[lang]}}</label>
+                                    <input type="text" required class="form-control" ng-model="purchaseToShowAdmin.client.name" readonly>
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <label class="col-form-label">{{titles.section1Ad.address[lang]}}</label>
+                                    <input type="text" required class="form-control" ng-model="purchaseToShowAdmin.client.adress">
+                                </div>
+                            </article>
+            
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>{{titles.section1Ad.title[lang]}}</th>
+                                        <th>{{titles.section1Ad.qty[lang]}}</th>
+                                        <th>{{titles.section1Ad.weight[lang]}}</th>
+                                        <th>{{titles.section1Ad.price[lang]}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="prod in purchaseToShowAdmin.products">
+                                        <td>{{prod.name}}</td>
+                                        <td><input type="number" ng-model="prod.no" min="0" ng-change="changeNoAdmin(prod)"></td>
+                                        <td>{{prod.weight}}</td>
+                                        <td>{{prod.price}}$</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <thead class="total">
+                                    <tr>
+                                        <th></th>
+                                        <th>{{titles.section1Ad.total[lang]}}</th>
+                                        <th>{{purchaseToShowAdmin.total[0]|number:2}} $</th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th>{{titles.section1Ad.postCost[lang]}}</th>
+                                        <th>{{purchaseToShowAdmin.total[2]|number:2}} $</th>
+                                    </tr>
+                                    <tr ng-if="purchaseToShowAdmin.total[3]<0">
+                                        <th></th>
+                                        <th>{{titles.section1Ad.credit[lang]}}</th>
+                                        <th>{{purchaseToShowAdmin.total[3]|number:2}} $</th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th>{{titles.section1Ad.payable[lang]}}</th>
+                                        <th>{{purchaseToShowAdmin.total[4]|number:2}} $</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" ng-click="deletePurchaseByAdm(purchaseToShowAdmin._id.$oid)">{{titles.section1Ad.delete[lang]}}</button>
+                        <button class="btn btn-primary" ng- ng-click="printTeaFaceur()"><i class="fa fa-print" aria-hidden="true"></i></button>
+                        <button class="btn btn-primary" ng-disabled="!tea_facteur.$dirty || tea_facteur.$invalid" ng-click="savePurchaseByAdm()">{{titles.section1Ad.save[lang]}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!-- ----------------------------------------------------------------------------------------------- -->
+	<div class="container user-profiles" ng-if="admin_head_class[1]">
+		<div class="col-xs-12">
+			<table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><input type="text" class="form-control" ng-change="currentPage_user=1" ng-model="cId" value=""></th>
+                        <th><input type="text" class="form-control" ng-change="currentPage_user=1" ng-model="cName" value=""></th>
+                        <th></th>
+                        <th></th>
+                        <th><button ng-click="dataRefresh_user()" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span></button></th>
+                    </tr>
+                    <tr>
+                        <th ng-click="sorting_user(0)">ID <span class="{{glyphSort_user[0]}}"></span></th>
+                        <th ng-click="sorting_user(1)">{{titles.section1Ad.customerName[lang]}} <span class="{{glyphSort_user[1]}}"></span></th>
+                        <th ng-click="sorting_user(2)">{{titles.section1Ad.special[lang]}} <span class="{{glyphSort_user[2]}}"></span></th>
+                        <th ng-click="sorting_user(3)">{{titles.section1Ad.active[lang]}} <span class="{{glyphSort_user[3]}}"></span></th>
+                        <th ng-click="sorting_user(4)">{{titles.section1Ad.prCity[lang]}} <span class="{{glyphSort_user[3]}}"></span></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in filtered = (userInfo | orderBy:sortType_user:sortReverse_user
+                                                                | filter:{id:cId}
+                                                                | filter:{lastname:cName}
+                                                    ) | startFrom: (currentPage_user-1)*pageSize_user | limitTo: pageSize_user" ng-if="item.type!=2">
+                        <td>{{item.id}}</td>
+                        <td>{{item.lastname}}, {{item.name}}</td>
+                        <td><i ng-class="item.special?'fa fa-check':'fa fa-times'" aria-hidden="true"></i></td>
+                        <td><i ng-class="item.active?'fa fa-check':'fa fa-times'" aria-hidden="true"></i></td>
+                        <td>{{item.province}} / {{item.city}}</td>
+                        <td class="purchase-list"><i class="fa fa-list-alt" aria-hidden="true" ng-click="showPurchaseList_admin(item.id)" data-toggle="modal" data-target="#show_purchase_list"></i></td>
+                        <td class="last_col">
+                            <div>
+                                <span ng-click="showClientFullInfo_admin(item)" data-toggle="modal" data-target="#show_info_user" class="glyphicon glyphicon glyphicon-zoom-in"></span>
+                            </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer row">
+            <div class="col-xs-2 col-sm-2">
+                <select ng-model="pageSize_orders">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="99999">{{titles.section1Ad.all[lang]}}</option>
+                </select>
+            </div>
+            <div class="col-xs-7 col-sm-6">
+                <ul uib-pagination total-items="filtered.length" items-per-page="pageSize_orders" ng-model="currentPage_user" max-size="maxSize" class="pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+            </div>
+        </div>
+
+<!-- ----------------------------------------------------------------------------------------- -->        
+        <div class="modal fade" id="show_purchase_list" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-bordered">
+                                 <thead>
+                                    <tr>
+                                        <th>{{titles.section1Ad.orderDate[lang]}}</th>
+                                        <th>{{titles.section1Ad.moneyReceived[lang]}}</th>
+                                        <th>{{titles.section1Ad.orderSent[lang]}}</th>
+                                        <th>{{titles.section1Ad.payable[lang]}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="facteur in userPurchaseList">
+                                        <td>{{facteur.date | date:shortDate}}</td>
+                                        <td>{{facteur.payed | date:shortDate}}</td>
+                                        <td>{{facteur.sent | date:shortDate}}</td>
+                                        <td>{{facteur.total[4] | number:2}}$</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="show_info_user" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="userInfo_change">
+                            <div class="form-group col-xs-3">
+                                <label class="col-form-label">ID:</label>
+                                <input type="text" required class="form-control" ng-model="thisUserTemp.id" readonly>
+                            </div>
+                            <div class="form-group col-xs-9">
+                                <label class="col-form-label">{{titles.section1Ad.name[lang]}}</label>
+                                <input type="text" required class="form-control" ng-model="thisUserTemp.name">
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <label class="col-form-label">{{titles.section1Ad.lastName[lang]}}</label>
+                                <input type="text" required class="form-control" ng-model="thisUserTemp.lastname" required>
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <label class="col-form-label">{{titles.section1Ad.email[lang]}} <sub><em>({{titles.header.username[lang]}})</em></sub></label>
+                                <input type="text" class="form-control" ng-model="thisUserTemp.username" required>
+                            </div>
+                            <div class="form-group col-xs-9">
+                                <label class="col-form-label">{{titles.section1Ad.address[lang]}}</label>
+                                <input type="text" class="form-control" ng-model="thisUserTemp.adress">
+                            </div>
+                            <div class="form-group col-xs-3">
+                                <label class="col-form-label">{{titles.section1Ad.pCode[lang]}}</label>
+                                <input type="text" class="form-control cp" ng-maxlength="6" ng-pattern="/^[aA-zZ]\d{1}[aA-zZ]\d{1}[aA-zZ]\d{1}$/" ng-model="thisUserTemp.cp">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="col-form-label">{{titles.section1Ad.city[lang]}}</label>
+                                <input type="text" class="form-control" ng-model="thisUserTemp.city">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="col-form-label">{{titles.section1Ad.province[lang]}}</label>
+                                <select class="form-control" ng-model="thisUserTemp.province">
+                                    <option value="Alberta">Alberta</option>
+                                    <option value="British Columbia">British Columbia</option>
+                                    <option value="Manitoba">Manitoba</option>
+                                    <option value="New Brunswick">New Brunswick</option>
+                                    <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                    <option value="Northwest Territories">Northwest Territories</option>
+                                    <option value="Nova Scotia">Nova Scotia</option>
+                                    <option value="Nunavut">Nunavut</option>
+                                    <option value="Ontario">Ontario</option>
+                                    <option value="Prince Edward Island">Prince Edward Island</option>
+                                    <option value="Quebec">Quebec</option>
+                                    <option value="Saskatchewan">Saskatchewan</option>
+                                    <option value="Yukon">Yukon</option>
+                                </select>    
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <label class="col-form-label">{{titles.section1Ad.phoneNo[lang]}}</label>
+                                <input type="text" class="form-control" ng-model="thisUserTemp.phone">
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <label class="col-form-label">{{titles.section1Ad.active[lang]}}</label>
+                                <label class="switch">
+                                    <input type="checkbox" ng-attr-checked={{thisUserTemp.active}} ng-model="thisUserTemp.active">
+                                    <span class="slider round"></span>
+                                </label>
+                                <p><small><em>{{titles.section1Ad.ableLogin[lang]}}</em></small></p>
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <label class="col-form-label">{{titles.section1Ad.special[lang]}}</label>
+                                <label class="switch">
+                                    <input type="checkbox" ng-attr-checked={{thisUserTemp.special}} ng-model="thisUserTemp.special">
+                                    <span class="slider round"></span>
+                                </label>
+                                <p><small><em>{{titles.section1Ad.seeSpecial[lang]}}</em></small></p>
+                            </div>
+                            <div class="docs" ng-repeat="doc in currentUserDocsTemp">
+                                <a href="images/docs/{{doc.name}}" target="_blank">
+                                    <div ng-if="!doc.active" class="removed"></div>
+                                    <img ng-src="images/docs/{{doc.name}}">
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" ng-disabled="!userInfo_change.$dirty || userInfo_change.$invalid" ng-click="updateUserAdm(thisUserTemp)">{{titles.section1Ad.save[lang]}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+<!-- ----------------------------------------------------------------------------------------------- -->
+    <div class="container user-profiles" ng-if="admin_head_class[2]">
+		<div class="col-xs-12">
+			<table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th><input type="text" class="form-control" ng-change="currentPage_message=1" ng-model="cName" value=""></th>
+                        <th><input type="text" class="form-control" ng-change="currentPage_message=1" ng-model="cPhone" value=""></th>
+                        <th><input type="text" class="form-control" ng-change="currentPage_message=1" ng-model="cEmail" value=""></th>
+                        <th><button ng-click="dataRefresh_user()" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span></button></th>
+                    </tr>
+                    <tr>
+                        <th ng-click="sorting_message(0)">Date <span class="{{glyphSort_message[0]}}"></span></th>
+                        <th ng-click="sorting_message(1)">{{titles.section1Ad.name[lang]}} <span class="{{glyphSort_message[1]}}"></span></th>
+                        <th ng-click="sorting_message(2)">{{titles.section1Ad.phoneNo[lang]}} <span class="{{glyphSort_message[2]}}"></span></th>
+                        <th ng-click="sorting_message(3)">{{titles.section1Ad.email[lang]}} <span class="{{glyphSort_message[3]}}"></span></th>
+                        <th>{{titles.section1Ad.message[lang]}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in filtered = (messagesInfo | orderBy:sortType_message:sortReverse_message
+                                                                    | filter:{date:cDate}
+                                                                    | filter:{name:cName}
+                                                                    | filter:{phone:cPhone}
+                                                                    | filter:{email:cEmail}
+                                                    ) | startFrom: (currentPage_message-1)*pageSize_message | limitTo: pageSize_message">
+                        <td>{{item.date|date:'longDate'}}</td>
+                        <td>{{item.name}}<p ng-if="item.userId">(id:{{item.userId}})</p></td>
+                        <td>{{item.phone}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.msg}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer row">
+            <div class="col-xs-2 col-sm-2">
+                <select ng-model="pageSize_orders">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="99999">{{titles.section1Ad.all[lang]}}</option>
+                </select>
+            </div>
+            <div class="col-xs-7 col-sm-6">
+                <ul uib-pagination total-items="filtered.length" items-per-page="pageSize_orders" ng-model="currentPage_user" max-size="maxSize" class="pagination-md" boundary-link-numbers="true" rotate="false"></ul>
+            </div>
+        </div>
+<!-- ========== PRINT TEA FACTEUR ========== -->
+    
+
+<div class="modal fade" id="showUser" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{{titles.section1Ad.customerInfo[lang]}}</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{thisUserTemp.lastname}}, {{thisUserTemp.name}}</p>
+                <p>{{thisUserTemp.adress}}, <span ng-if="thisUserTemp.city">{{thisUserTemp.city}}</span>, <span ng-if="thisUserTemp.province">{{thisUserTemp.province}}</span><span class="cp" ng-if="thisUserTemp.cp">&nbsp;&nbsp;{{thisUserTemp.cp}}</span></p>
+                <p><span ng-if="thisUserTemp.phone">{{thisUserTemp.phone|tel}}</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+

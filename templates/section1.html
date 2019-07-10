@@ -1,0 +1,30 @@
+<div class="container section1">
+    <div class="row">
+        <div class="col-sm-2 shop-by-type">
+            <div>
+                <p>{{titles.rightBox.shopBy[lang]}}</p>
+                <p>{{titles.rightBox.type[lang]}}</p>        
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-10 type-of-tea">
+            <div class="row">
+                <div class="col-xs-4 col-sm-3 tea-groups" ng-repeat="tea in mainGroups" ng-if="!tea.special">
+                    <div ng-click="teaGroupSelected(tea.id, tea.name)">
+                        <div class="image">
+                            <img ng-src="images/{{tea.image}}">
+                        </div>
+                        <h3 ng-if="lang == 0">{{tea.name_en}}</h3>
+                        <h3 ng-if="lang == 1">{{tea.name_fr}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row slogan">
+        <h2>{{titles.rightBox.slogan[lang]}}
+            <a class="btn" data-toggle="modal" data-target="#subscribeModal">{{titles.rightBox.subscribe[lang]}} <i class="fa fa-chevron-right"></i></a>
+        </h2>
+    </div>
+</div>
+   
