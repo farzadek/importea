@@ -9,17 +9,10 @@
     <link rel="icon" href="images/logo-icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GreenPortal</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <title>IMPORTEA</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
     <script>if(typeof angular == 'undefined') {document.write(unescape("%3Cscript src='assets/angular161.js'%3E%3C/script%3E"));}</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/titles.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 </head>
 
 
@@ -57,22 +50,12 @@
         </nav>
     </header>
     <section ng-if="!currentUser || (currentUser && currentUser.type==1)">
-        <div ng-if="currentUser.special" class="container link-bar1">
-            <div class="row">
-                <ul>
-                    <li><a ng-click="changeShowSpecialProducts(1)">{{titles.specialLinks.flowers[lang]}}</a></li>
-                    <li><a ng-click="changeShowSpecialProducts(0)">{{titles.specialLinks.teaShop[lang]}}</a></li>
-                </ul>
-            </div>
-        </div>
-        <div ng-if="!currentUser.special || (currentUser.special && !showSpecialProducts)" ng-include="'templates/section1.html'"></div>
-        <div ng-if="currentUser && currentUser.special && showSpecialProducts" ng-include="'templates/section1s.html'"></div>
+
+        <div ng-include="'templates/section1.html'"></div>
     
-        <div ng-if="!currentUser.special || (currentUser.special && !showSpecialProducts)" ng-include="'templates/section2.html'"></div>
-        <div ng-if="currentUser && currentUser.special && showSpecialProducts" ng-include="'templates/section2s.html'"></div>
+        <div ng-include="'templates/section2.html'"></div>
     
-        <div ng-if="!currentUser.special || (currentUser.special && !showSpecialProducts)" ng-include="'templates/section3.html'"></div>
-        <div ng-if="currentUser && currentUser.special && showSpecialProducts" ng-include="'templates/section3s.html'"></div>
+        <div ng-include="'templates/section3.html'"></div>
     
         <div ng-include="'templates/section4.html'"></div>
     </section>
@@ -109,6 +92,7 @@
             </div>
         </div>
     </div>
+
 <!-- LOGIN-MODAL ---------------------------------------------------------------------------------------------------------------- -->    
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -271,49 +255,13 @@
                                 <i class="fa fa-star" aria-hidden="true" ng-if="productToShow.rate[4]"></i>
                                 <i class="fa fa-star-o" aria-hidden="true" ng-if="!productToShow.rate[4]"></i>
                             </div>
-                            <div class="grade">{{titles.index.grade[lang]}}: <strong>{{productToShow.grade}}</strong></div>
-
-                            <div class="charts">
-                                <ul class="nav nav-tabs">
-                                    <li ng-if="productToShow.effects.length"><a data-toggle="tab" href="#effects">{{titles.productModal.effects[lang]}}</a></li>
-                                    <li ng-if="productToShow.medical.length"><a data-toggle="tab" href="#medical">{{titles.productModal.medical[lang]}}</a></li>
-                                    <li ng-if="productToShow.negatives.length"><a data-toggle="tab" href="#negatives">{{titles.productModal.negatives[lang]}}</a></li>
-                                </ul>
-        
-                                <div class="tab-content">   
-                                    <div id="effects" class="tab-pane fadein" ng-if="productToShow.effects.length">
-                                        <div class="progress" ng-repeat="item in productToShow.effects">
-                                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
-                                                aria-valuenow="{{item.value}}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width':{{item.value}}+'%'}">{{item.name}}
-                                            </div>
-                                        </div>
-                                    </div>
-        
-                                    <div id="medical" class="tab-pane fadein" ng-if="productToShow.medical.length">
-                                        <div class="progress" ng-repeat="item in productToShow.medical">
-                                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
-                                                aria-valuenow="{{item.value}}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width':{{item.value}}+'%'}">{{item.name}}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="negatives" class="tab-pane fadein" ng-if="productToShow.negatives.length">
-                                        <div class="progress" ng-repeat="item in productToShow.negatives">
-                                            <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"
-                                                aria-valuenow="{{item.value}}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width':{{item.value}}+'%'}">{{item.name}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                         </div>
                         <div class="left">
                             <img ng-src="images/{{productToShow.image}}">
-                            <p>{{productToShow.text}}</p>
+                            <p ng-if="lang == 0">{{productToShow.desc_en}}</p>
+                            <p ng-if="lang == 1">{{productToShow.desc_fr}}</p>
                         </div>
                     </div>
-                    <div class="modal-footer"></div>
                 </div>
             </div>
         </div>
@@ -494,7 +442,6 @@
             <div class="modal-body">
                 <ul class="nav nav-tabs">
                     <li><a data-toggle="tab" href="#profile">{{titles.index.profile[lang]}}</a></li>
-                    <li><a data-toggle="tab" href="#membership">{{titles.index.membership[lang]}}</a></li>
                     <li class="active"><a data-toggle="tab" href="#purchase">{{titles.index.purchases[lang]}}</a></li>
                 </ul>
                 <div class="tab-content">
@@ -560,47 +507,6 @@
                         </form>                          
                     </div>
 
-                    <div id="membership" class="tab-pane fade">
-                        <h4 ng-if="currentUser.confirm">{{titles.index.youAreConfirmed[lang]}}</h4>
-                        <article ng-if="!currentUser.confirm">
-                            <form name="userConditionForm">
-                                <div class="row condition">
-                                    <ul>
-                                        <li><input type="checkbox" id="checkboxOne" ng-model="currentUser.condition[0]" ng-checked="currentUser.condition[0]"><label for="checkboxOne">{{titles.index.iHave19[lang]}}</label></li>
-                                        <li><input type="checkbox" id="checkboxTwo" ng-model="currentUser.condition[1]" ng-checked="currentUser.condition[1]"><label for="checkboxTwo">{{titles.index.iAmCitizen[lang]}}</label></li>
-                                        <li><input type="checkbox" id="checkboxThree" ng-model="currentUser.condition[2]" ng-checked="currentUser.condition[2]"><label for="checkboxThree">{{titles.index.condition3[lang]}}</label></li>
-                                    </ul>
-                                </div>
-                                <hr/>
-                            </form>
-
-                            <div class="row">
-                                <div class="form-group col-xs-12">
-                                    <h4><strong>{{titles.index.uploadMsg[lang]}}</strong></h4>
-                                    {{titles.index.photoMsg[lang]}}
-                                </div>
-                                <div class="form-group col-xs-12">
-                                    <input type="file" file-input="files" id="inputFile" accept="image/*" />
-                                </div>
-                                <div class="form-group col-xs-12">
-                                    <button ng-disabled="!files" ng-click="uploadFile()" class="btn btn-primary">Upload
-                                        File</button>
-                                </div>
-                            </div>
-                            <div class="row docs">
-                                <div class="col-xs-6 col-sm-4" ng-repeat="doc in currentUserDocs" ng-if="doc.active">
-                                    <a ng-click="removeImageFromProfile(doc)"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                    <a class="preview-image" target="_blank" href="images/docs/{{doc.name}}"><img ng-src="images/docs/{{doc.name}}"></a>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 successMsg" ng-if=" showPhotoSuccesMsg">{{titles.index.photoReceived[lang]}}</div>
-                            <hr/>
-                            <div class="row">
-                                <button ng-click="saveUserConditions()" ng-disabled="!userConditionForm.$dirty"
-                                        class="btn btn-primary">{{titles.index.save[lang]}}</button>
-                            </div>
-                        </article>
-                    </div>
 
                     <div id="purchase" class="tab-pane fade in active">
                         <div class="orders" ng-if="pendingPurchases">
@@ -692,6 +598,13 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/titles.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Crete+Round|Noto+Serif+TC:400,700" rel="stylesheet">
     <link href="style/style.css" rel="stylesheet">

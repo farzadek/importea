@@ -173,11 +173,6 @@ app.controller('mainCtrl', function($scope, $cookieStore, $http, $timeout, grPor
         else{$scope.lang=1;}
     }
 
-    // show special products **********************************************
-    $scope.changeShowSpecialProducts = function(y){
-        $scope.showSpecialProducts = y;
-    }
-
     // load all tea packages *********************************************************
     grPortalService.getProducts('{"special":false}').then(
         function(res){
@@ -328,7 +323,7 @@ app.controller('mainCtrl', function($scope, $cookieStore, $http, $timeout, grPor
         }
     }
 
-    $scope.showThisProduct = function(products){
+    $scope.showThisProduct = function(products){ console.log(products);
         $scope.productToShow = products;
         $scope.selectedProductWeight = 0;
         //$scope.order = products.order;

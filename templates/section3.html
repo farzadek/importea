@@ -7,7 +7,8 @@
                     <div class="image">
                         <img ng-src="images/{{tea.image}}">
                     </div>
-                    <h3>{{tea.title}}</h3>
+                    <h3 ng-if="lang == 0">{{tea.title_en}}</h3>
+                    <h3 ng-if="lang == 1">{{tea.title_fr}}</h3>
                     <p><em>{{tea.price[0].price|number:2}}$</em> /{{tea.price[0].weight}}gr</p> 
                 </div>
             </span>
