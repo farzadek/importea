@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,14 +11,23 @@
 
     <title>IMPORTEA</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
-    <script>if(typeof angular == 'undefined') {document.write(unescape("%3Cscript src='assets/angular161.js'%3E%3C/script%3E"));}</script>
+    <script>
+        if (typeof angular == 'undefined') {
+            document.write(unescape("%3Cscript src='assets/angular161.js'%3E%3C/script%3E"));
+        }
+    </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 </head>
 
 
 <body id="page-top" ng-app="greenPortalApp" ng-controller="mainCtrl">
 
-    <div ng-if="showLoader" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <div ng-if="showLoader" class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 
     <header>
         <nav class="navbar navbar-default navbar-static-top navbar-inverse">
@@ -26,8 +35,8 @@
                 <a ng-if="basket.items.length>0" class="basket" ng-click="confirmPurchase()" data-toggle="modal" data-target="#basketModal">
                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                     <span class="badge">{{basket.items.length}}</span>
-                </a>                
-                <div class="navbar-header">                    
+                </a>
+                <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -52,11 +61,11 @@
     <section ng-if="!currentUser || (currentUser && currentUser.type==1)">
 
         <div ng-include="'templates/section1.html'"></div>
-    
+
         <div ng-include="'templates/section2.html'"></div>
-    
+
         <div ng-include="'templates/section3.html'"></div>
-    
+
         <div ng-include="'templates/section4.html'"></div>
     </section>
     <section ng-if="currentUser && currentUser.type==2">
@@ -65,7 +74,7 @@
     <div ng-include="'templates/footer.html'"></div>
     <p id="send"></p>
 
-<!-- Forgot password-MODAL ---------------------------------------------------------------------------------------------------------------- -->    
+    <!-- Forgot password-MODAL ---------------------------------------------------------------------------------------------------------------- -->
     <div class="modal fade" id="forgotPassModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -93,7 +102,7 @@
         </div>
     </div>
 
-<!-- LOGIN-MODAL ---------------------------------------------------------------------------------------------------------------- -->    
+    <!-- LOGIN-MODAL ---------------------------------------------------------------------------------------------------------------- -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -123,11 +132,11 @@
             </div>
         </div>
     </div>
-    
-<!-- SUBSCRIBE-MODAL ---------------------------------------------------------------------------------------------------------------- -->        
-        <div class="modal fade" id="subscribeModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
+
+    <!-- SUBSCRIBE-MODAL ---------------------------------------------------------------------------------------------------------------- -->
+    <div class="modal fade" id="subscribeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">{{titles.index.subscribe[lang]}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -138,23 +147,19 @@
                     <form name="subscribe_user_form">
                         <div class="form-group">
                             <label class="col-form-label">{{titles.index.name[lang]}}*</label>
-                            <input type="text" class="form-control" ng-model="subscribe_name" name="subscribe_name" required 
-                                ng-class="{'errInput':subscribe_user_form.$dirty && subscribe_user_form.subscribe_name.$invalid}">
+                            <input type="text" class="form-control" ng-model="subscribe_name" name="subscribe_name" required ng-class="{'errInput':subscribe_user_form.$dirty && subscribe_user_form.subscribe_name.$invalid}">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">{{titles.index.lastname[lang]}}*</label>
-                            <input type="text" class="form-control" ng-model="subscribe_lastname" name="subscribe_lastname" required 
-                                ng-class="{'errInput':subscribe_user_form.$dirty && subscribe_user_form.subscribe_lastname.$invalid}">
+                            <input type="text" class="form-control" ng-model="subscribe_lastname" name="subscribe_lastname" required ng-class="{'errInput':subscribe_user_form.$dirty && subscribe_user_form.subscribe_lastname.$invalid}">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">{{titles.index.email[lang]}}*</label>
-                            <input type="email" class="form-control" ng-model="subscribe_email" name="subscribe_email" required
-                                ng-class="{'errInput':subscribe_user_form.$dirty && subscribe_user_form.subscribe_email.$invalid}">
+                            <input type="email" class="form-control" ng-model="subscribe_email" name="subscribe_email" required ng-class="{'errInput':subscribe_user_form.$dirty && subscribe_user_form.subscribe_email.$invalid}">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">{{titles.index.password[lang]}}*</label>
-                            <input type="password" class="form-control" ng-model="subscribe_psw1" name="subscribe_psw1" required
-                                ng-class="{'errInput':subscribe_user_form.$dirty && subscribe_user_form.subscribe_psw1.$invalid}">
+                            <input type="password" class="form-control" ng-model="subscribe_psw1" name="subscribe_psw1" required ng-class="{'errInput':subscribe_user_form.$dirty && subscribe_user_form.subscribe_psw1.$invalid}">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">{{titles.index.passwordConfirm[lang]}}</label>
@@ -204,149 +209,155 @@
                     <button type="button" ng-disabled="!subscribe_user_form.$dirty || subscribe_user_form.$invalid" ng-click="subscribeUser()" class="btn btn-primary">{{titles.index.subscribe[lang]}}</button>
                 </div>
                 <p class="errMessage">{{subscribeMessage}}</p>
-                </div>
             </div>
         </div>
+    </div>
 
-<!-- PRODUCT-MODAL ---------------------------------------------------------------------------------------------------------------- -->    
-        <div class="modal fade" id="productModal" tabindex="-1" role="dialog" style="z-index:10002">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title">{{productToShow.title}}</h2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <!-- PRODUCT-MODAL ---------------------------------------------------------------------------------------------------------------- -->
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" style="z-index:10002">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">
+                        <span ng-if="lang">{{productToShow.title_fr}}</span>
+                        <span ng-if="!lang">{{productToShow.title_en}}</span>
+                    </h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="right">
-                            <div class="addBasket">
-                                <form>
-                                    <div class="form-group">
-                                        <label>{{titles.index.selectQty[lang]}}:</label>
-                                        <select class="form-control" ng-model="selectedProductWeight" ng-change="productModelChanged(productToShow.id, selectedProductWeight)">  
+                </div>
+                <div class="modal-body">
+                    <div class="right">
+                        <div class="addBasket">
+                            <form>
+                                <div class="form-group">
+                                    <label>{{titles.index.selectQty[lang]}}:</label>
+                                    <select class="form-control" ng-model="selectedProductWeight" ng-change="productModelChanged(productToShow.id, selectedProductWeight)">  
                                             <option ng-repeat="package in productToShow.price track by $index" ng-value="$index">{{package.weight}} gr - {{package.price}}$</option>
                                         </select>
-                                        <div class="quantity">
-                                            <i class="fa fa-minus-square" aria-hidden="true" ng-click="decreaseOrder()"></i>
-                                            <input type="number" readonly ng-model="order">
-                                            <i class="fa fa-plus-square" aria-hidden="true" ng-click="increaseOrder()"></i>
-                                        </div>                                 
-                                        <button ng-click="addToBasket(productToShow, selectedProductWeight, order)" ng-disabled="!order" class="btn btn-info btn-lg">{{titles.index.addToBasket[lang]}} <i class="fa fa-shopping-basket" aria-hidden="true"></i></button>
-                                        <span class="total" ng-if="order">( {{order*productToShow.price[selectedProductWeight].price|number:2}} $)</span>
+                                    <div class="quantity">
+                                        <i class="fa fa-minus-square" aria-hidden="true" ng-click="decreaseOrder()"></i>
+                                        <input type="number" readonly ng-model="order">
+                                        <i class="fa fa-plus-square" aria-hidden="true" ng-click="increaseOrder()"></i>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="descript">
-                                <ul ng-if="productToShow.deg || productToShow.time">
-                                    <li><i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i> {{productToShow.deg}}<sup>&deg;c</sup></li>
-                                    <li><i class="fa fa-clock-o" aria-hidden="true"></i></i> {{productToShow.time}}</li>
-                                </ul>
-                            </div>
-                            <div class="rating" ng-if="productToShow.rate.length">
-                                <i class="fa fa-star" aria-hidden="true" ng-if="productToShow.rate[0]"></i>
-                                <i class="fa fa-star-o" aria-hidden="true" ng-if="!productToShow.rate[0]"></i>
-                                <i class="fa fa-star" aria-hidden="true" ng-if="productToShow.rate[1]"></i>
-                                <i class="fa fa-star-o" aria-hidden="true" ng-if="!productToShow.rate[1]"></i>
-                                <i class="fa fa-star" aria-hidden="true" ng-if="productToShow.rate[2]"></i>
-                                <i class="fa fa-star-o" aria-hidden="true" ng-if="!productToShow.rate[2]"></i>
-                                <i class="fa fa-star" aria-hidden="true" ng-if="productToShow.rate[3]"></i>
-                                <i class="fa fa-star-o" aria-hidden="true" ng-if="!productToShow.rate[3]"></i>
-                                <i class="fa fa-star" aria-hidden="true" ng-if="productToShow.rate[4]"></i>
-                                <i class="fa fa-star-o" aria-hidden="true" ng-if="!productToShow.rate[4]"></i>
-                            </div>
+                                    <button ng-click="addToBasket(productToShow, selectedProductWeight, order)" ng-disabled="!order" class="btn btn-info btn-lg">{{titles.index.addToBasket[lang]}} <i class="fa fa-shopping-basket" aria-hidden="true"></i></button>
+                                    <span class="total" ng-if="order">( {{order*productToShow.price[selectedProductWeight].price|number:2}} $)</span>
+                                </div>
+                            </form>
                         </div>
-                        <div class="left">
-                            <img ng-src="images/{{productToShow.image}}">
-                            <p ng-if="lang == 0">{{productToShow.desc_en}}</p>
-                            <p ng-if="lang == 1">{{productToShow.desc_fr}}</p>
+                        <div class="descript">
+                            <ul ng-if="productToShow.deg || productToShow.time">
+                                <li><i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i> {{productToShow.deg}}<sup>&deg;c</sup></li>
+                                <li><i class="fa fa-clock-o" aria-hidden="true"></i> {{productToShow.time}}</li>
+                                <li><i class="fa fa-spoon" aria-hidden="true"></i></i> {{productToShow.amount}} <sub>/Litre</sub></li>
+                                <li><strong>Ingredients:</strong> <span ng-if="!lang">{{productToShow.ingredi_en}}</span><span ng-if="lang">{{productToShow.ingredi_fr}}</span></li>
+                            </ul>
                         </div>
+                        <div class="rating" ng-if="productToShow.rate.length">
+                            <i class="fa fa-star" aria-hidden="true" ng-if="productToShow.rate[0]"></i>
+                            <i class="fa fa-star-o" aria-hidden="true" ng-if="!productToShow.rate[0]"></i>
+                            <i class="fa fa-star" aria-hidden="true" ng-if="productToShow.rate[1]"></i>
+                            <i class="fa fa-star-o" aria-hidden="true" ng-if="!productToShow.rate[1]"></i>
+                            <i class="fa fa-star" aria-hidden="true" ng-if="productToShow.rate[2]"></i>
+                            <i class="fa fa-star-o" aria-hidden="true" ng-if="!productToShow.rate[2]"></i>
+                            <i class="fa fa-star" aria-hidden="true" ng-if="productToShow.rate[3]"></i>
+                            <i class="fa fa-star-o" aria-hidden="true" ng-if="!productToShow.rate[3]"></i>
+                            <i class="fa fa-star" aria-hidden="true" ng-if="productToShow.rate[4]"></i>
+                            <i class="fa fa-star-o" aria-hidden="true" ng-if="!productToShow.rate[4]"></i>
+                        </div>
+                    </div>
+                    <div class="left">
+                        <img ng-src="images/{{productToShow.image}}">
+                        <p ng-if="lang == 0">{{productToShow.desc_en}}</p>
+                        <p ng-if="lang == 1">{{productToShow.desc_fr}}</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        
-<!-- purchase basket -MODAL ---------------------------------------------------------------------------------------------------------------- -->    
-        <div class="modal fade" id="basketModal" tabindex="-1" role="dialog" style="z-index:10000">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+    <!-- purchase basket -MODAL ---------------------------------------------------------------------------------------------------------------- -->
+    <div class="modal fade" id="basketModal" tabindex="-1" role="dialog" style="z-index:10000">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
-                        <h3 ng-if="purchaseProcessStep==1">{{titles.purchase.clietInfoTitle[lang]}}</h3>
-                        <h3 ng-if="purchaseProcessStep==2">{{titles.purchase.payment[lang]}}</h3>
+                    <h3 ng-if="purchaseProcessStep==1">{{titles.purchase.clietInfoTitle[lang]}}</h3>
+                    <h3 ng-if="purchaseProcessStep==2">{{titles.purchase.payment[lang]}}</h3>
+                </div>
+                <div class="modal-body">
+                    <!-- step 0 --------------------------------------------------------------------- -->
+                    <div ng-if="purchaseProcessStep==0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>{{titles.index.title[lang]}}</th>
+                                    <th>{{titles.index.qty[lang]}}</th>
+                                    <th>{{titles.index.price[lang]}}</th>
+                                    <th>{{titles.index.total[lang]}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in basket.items">
+                                    <td ng-if="item.no>0">{{item.name}} <em>({{item.weight}}gr)</em></td>
+                                    <td ng-if="item.no>0">{{item.no}}</td>
+                                    <td ng-if="item.no>0">{{item.price | number:2}}</td>
+                                    <td ng-if="item.no>0">{{item.price*item.no | number:2}} $</td>
+                                </tr>
+                            </tbody>
+                            <thead class="total">
+                                <tr>
+                                    <th colspan="2">{{titles.index.total[lang]}}</th>
+                                    <th colspan="2">{{basket.total | number:2}} $</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">{{titles.index.postCost[lang]}}</th>
+                                    <th colspan="2">{{postalPrice | number:2}} $</th>
+                                </tr>
+                                <tr ng-if="basket.total>min_purchase_to_free_send">
+                                    <th colspan="2">{{titles.index.postCost[lang]}} ({{titles.index.credit[lang]}})</th>
+                                    <th colspan="2">-{{postalPrice | number:2}} $</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">{{titles.index.payable[lang]}}</th>
+                                    <th colspan="2">{{basket.subTotal | number:2}} $</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
-                    <div class="modal-body">
-                        <!-- step 0 --------------------------------------------------------------------- -->
-                        <div ng-if="purchaseProcessStep==0">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>{{titles.index.title[lang]}}</th>
-                                        <th>{{titles.index.qty[lang]}}</th>
-                                        <th>{{titles.index.price[lang]}}</th>
-                                        <th>{{titles.index.total[lang]}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="item in basket.items">
-                                        <td ng-if="item.no>0">{{item.name}} <em>({{item.weight}}gr)</em></td>
-                                        <td ng-if="item.no>0">{{item.no}}</td>
-                                        <td ng-if="item.no>0">{{item.price | number:2}}</td>
-                                        <td ng-if="item.no>0">{{item.price*item.no | number:2}} $</td>
-                                    </tr>
-                                </tbody>
-                                <thead class="total">
-                                    <tr>
-                                        <th colspan="2">{{titles.index.total[lang]}}</th>
-                                        <th colspan="2">{{basket.total | number:2}} $</th>
-                                   </tr>
-                                    <tr>
-                                        <th colspan="2">{{titles.index.postCost[lang]}}</th>
-                                        <th colspan="2">{{postalPrice | number:2}} $</th>
-                                    </tr>
-                                    <tr ng-if="basket.total>min_purchase_to_free_send">
-                                        <th colspan="2">{{titles.index.postCost[lang]}} ({{titles.index.credit[lang]}})</th>
-                                        <th colspan="2">-{{postalPrice | number:2}} $</th>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2">{{titles.index.payable[lang]}}</th>
-                                        <th colspan="2">{{basket.subTotal | number:2}} $</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div> 
-                        <!-- step 1 --------------------------------------------------------------------- -->
-                        <div class="confirmText" ng-if="purchaseProcessStep==1">
-                            <p>{{titles.purchase.fullName[lang]}}: <strong>{{currentUser.lastname}}, {{currentUser.name}}</strong></p>
-                            <p>{{titles.purchase.adress[lang]}}: <strong>{{currentUser.adress}} - {{currentUser.city}}, {{currentUser.province}} - {{currentUser.cp}}</strong></p>
-                            <p>{{titles.purchase.phoneNo[lang]}}: <strong>{{currentUser.phone | tel}}</strong></p>
-                            <p class="alert alert-warning" ng-if="!currentUser.adress || !currentUser.city || !currentUser.province || !currentUser.cp">{{titles.purchase.adressIncomplete[lang]}}</p>
-                        </div>
-                        <!-- step 2 --------------------------------------------------------------------- -->
-                        <div class="confirmText" ng-if="purchaseProcessStep==2">
-                            <p>{{titles.purchase.howPayText1[lang]}} <h4><strong>{{basket.subTotal | number:2}} $</h4></strong>
-                                {{titles.purchase.howPayText2[lang]}}</p>
-                            <h4><strong>shop@greenportal.ca</strong></h4>
-                            <p>{{titles.purchase.howPayText3[lang]}}</p>
-                            <h4><a data-toggle="modal" data-target="#howToPay">{{titles.purchase.howPay[lang]}}</a></h4>
-                        </div>
+                    <!-- step 1 --------------------------------------------------------------------- -->
+                    <div class="confirmText" ng-if="purchaseProcessStep==1">
+                        <p>{{titles.purchase.fullName[lang]}}: <strong>{{currentUser.lastname}}, {{currentUser.name}}</strong></p>
+                        <p>{{titles.purchase.adress[lang]}}: <strong>{{currentUser.adress}} - {{currentUser.city}}, {{currentUser.province}} - {{currentUser.cp}}</strong></p>
+                        <p>{{titles.purchase.phoneNo[lang]}}: <strong>{{currentUser.phone | tel}}</strong></p>
+                        <p class="alert alert-warning" ng-if="!currentUser.adress || !currentUser.city || !currentUser.province || !currentUser.cp">{{titles.purchase.adressIncomplete[lang]}}</p>
                     </div>
-                    <div class="modal-footer">
-                        <div>
-                            <button ng-if="purchaseProcessStep>0" ng-click="facteurPrevStep()" type="button" class="btn btn-info left-side"><i class="fa fa-angle-double-left" aria-hidden="true"></i> {{titles.index.previous[lang]}}</button>
-                            <button ng-if="purchaseProcessStep<2" ng-click="facteurNextStep()" type="button" class="btn btn-primary right-side">{{titles.index.proceed[lang]}} <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
-                            <button ng-disabled="!currentUser.adress || !currentUser.city || !currentUser.province || !currentUser.cp" ng-if="purchaseProcessStep==2" ng-click="purchaseConfirm()" type="button" class="btn btn-primary right-side">{{titles.index.confirm[lang]}}</button>
-                        </div>
+                    <!-- step 2 --------------------------------------------------------------------- -->
+                    <div class="confirmText" ng-if="purchaseProcessStep==2">
+                        <p>{{titles.purchase.howPayText1[lang]}}
+                            <h4><strong>{{basket.subTotal | number:2}} $</h4></strong> {{titles.purchase.howPayText2[lang]}}
+                        </p>
+                        <h4><strong>shop@greenportal.ca</strong></h4>
+                        <p>{{titles.purchase.howPayText3[lang]}}</p>
+                        <h4><a data-toggle="modal" data-target="#howToPay">{{titles.purchase.howPay[lang]}}</a></h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <button ng-if="purchaseProcessStep>0" ng-click="facteurPrevStep()" type="button" class="btn btn-info left-side"><i class="fa fa-angle-double-left" aria-hidden="true"></i> {{titles.index.previous[lang]}}</button>
+                        <button ng-if="purchaseProcessStep<2" ng-click="facteurNextStep()" type="button" class="btn btn-primary right-side">{{titles.index.proceed[lang]}} <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+                        <button ng-disabled="!currentUser.adress || !currentUser.city || !currentUser.province || !currentUser.cp" ng-if="purchaseProcessStep==2" ng-click="purchaseConfirm()" type="button" class="btn btn-primary right-side">{{titles.index.confirm[lang]}}</button>
                     </div>
                 </div>
             </div>
         </div>
-        
-<!-- FAQ-MODAL ---------------------------------------------------------------------------------------------------------------- -->    
-<div class="modal fade" id="faq" tabindex="-1" role="dialog" style="z-index: 10003">
+    </div>
+
+    <!-- FAQ-MODAL ---------------------------------------------------------------------------------------------------------------- -->
+    <div class="modal fade" id="faq" tabindex="-1" role="dialog" style="z-index: 10003">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -363,119 +374,119 @@
         </div>
     </div>
 
-<!-- facteur only to show - MODAL ---------------------------------------------------------------------------------------------------------------- -->    
-<div class="modal fade" id="teaOnlyToShowModal" tabindex="-1" role="dialog" style="z-index:10000">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <!-- facteur only to show - MODAL ---------------------------------------------------------------------------------------------------------------- -->
+    <div class="modal fade" id="teaOnlyToShowModal" tabindex="-1" role="dialog" style="z-index:10000">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
-            <div class="modal-body">
-                <div>
-                    <p>{{titles.showFacteurModal.date[lang]}}: <strong>{{orderToShow.date}}</strong></p>
-                    <h4>{{titles.purchase.orderNo[lang]}}: <strong>{{orderToShow.cn}}</strong></h4>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>{{titles.index.title[lang]}}</th>
-                                <th>{{titles.index.qty[lang]}}</th>
-                                <th>{{titles.index.price[lang]}}</th>
-                                <th>{{titles.index.total[lang]}}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="item in orderToShow.products">
-                                <td ng-if="item.no>0">{{item.name}} ({{item.weight}} gr)</td>
-                                <td ng-if="item.no>0">{{item.no}}</td>
-                                <td ng-if="item.no>0">{{item.price | number:2}}</td>
-                                <td ng-if="item.no>0">{{item.price*item.no | number:2}} $</td>
-                            </tr>
-                        </tbody>
-                        <thead class="total">
-                            <tr>
-                                <th colspan="2">{{titles.index.total[lang]}}</th>
-                                <th colspan="2">{{orderToShow.total[0] | number:2}} $</th>
-                            </tr>
-                            <tr>
-                                <th colspan="2">{{titles.index.postCost[lang]}}</th>
-                                <th colspan="2">{{orderToShow.total[2] | number:2}} $</th>
-                            </tr>
-                            <tr ng-if="orderToShow.total[3]">
-                                <th colspan="2">{{titles.index.postCost[lang]}} ({{titles.index.credit[lang]}})</th>
-                                <th colspan="2">{{orderToShow.total[3] | number:2}} $</th>
-                            </tr>
-                            <tr>
-                                <th colspan="2">{{titles.index.payable[lang]}}</th>
-                                <th colspan="2">{{orderToShow.total[4] | number:2}} $</th>
-                            </tr>
-                        </thead>
-                    </table>
-                    <div ng-if="!orderToShow.payed">
-                        <p>{{titles.showFacteurModal.waitMoney[lang]}} <a data-toggle="modal" data-target="#howToPay"><i class="fa fa-question-circle" aria-hidden="true"></i> {{titles.showFacteurModal.howTo[lang]}}</a></p>
-                        <p>{{titles.showFacteurModal.alreadyPaid[lang]}} <a data-toggle="modal" data-target="#faq">{{titles.showFacteurModal.readMore[lang]}}</a></p>
-                    </div>
-                    <div ng-if="orderToShow.payed && !orderToShow.sent">
-                        <p>{{titles.showFacteurModal.moneyReceivedDate[lang]}}: {{orderToShow.payed|date:'yyyy-MM-dd'}}</p>
-                        <p>{{titles.showFacteurModal.facteurNotSent[lang]}}</p>
-                    </div>
-                    <div ng-if="orderToShow.payed && orderToShow.sent">
-                        <p>{{titles.showFacteurModal.moneyReceivedDate[lang]}}: {{orderToShow.payed|date:'yyyy-MM-dd'}}</p>
-                        <p>{{titles.showFacteurModal.sendDate[lang]}}: {{orderToShow.sent|date:'yyyy-MM-dd'}}</p>
-                        <p>{{titles.section1Ad.trackNo[lang]}}: {{orderToShow.trackno}}</p>
-                        <p>{{titles.showFacteurModal.notReceivedMsg[lang]}} {{titles.showFacteurModal.contact[lang]}}</p>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>{{titles.showFacteurModal.date[lang]}}: <strong>{{orderToShow.date}}</strong></p>
+                        <h4>{{titles.purchase.orderNo[lang]}}: <strong>{{orderToShow.cn}}</strong></h4>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>{{titles.index.title[lang]}}</th>
+                                    <th>{{titles.index.qty[lang]}}</th>
+                                    <th>{{titles.index.price[lang]}}</th>
+                                    <th>{{titles.index.total[lang]}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in orderToShow.products">
+                                    <td ng-if="item.no>0">{{item.name}} ({{item.weight}} gr)</td>
+                                    <td ng-if="item.no>0">{{item.no}}</td>
+                                    <td ng-if="item.no>0">{{item.price | number:2}}</td>
+                                    <td ng-if="item.no>0">{{item.price*item.no | number:2}} $</td>
+                                </tr>
+                            </tbody>
+                            <thead class="total">
+                                <tr>
+                                    <th colspan="2">{{titles.index.total[lang]}}</th>
+                                    <th colspan="2">{{orderToShow.total[0] | number:2}} $</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">{{titles.index.postCost[lang]}}</th>
+                                    <th colspan="2">{{orderToShow.total[2] | number:2}} $</th>
+                                </tr>
+                                <tr ng-if="orderToShow.total[3]">
+                                    <th colspan="2">{{titles.index.postCost[lang]}} ({{titles.index.credit[lang]}})</th>
+                                    <th colspan="2">{{orderToShow.total[3] | number:2}} $</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">{{titles.index.payable[lang]}}</th>
+                                    <th colspan="2">{{orderToShow.total[4] | number:2}} $</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div ng-if="!orderToShow.payed">
+                            <p>{{titles.showFacteurModal.waitMoney[lang]}} <a data-toggle="modal" data-target="#howToPay"><i class="fa fa-question-circle" aria-hidden="true"></i> {{titles.showFacteurModal.howTo[lang]}}</a></p>
+                            <p>{{titles.showFacteurModal.alreadyPaid[lang]}} <a data-toggle="modal" data-target="#faq">{{titles.showFacteurModal.readMore[lang]}}</a></p>
+                        </div>
+                        <div ng-if="orderToShow.payed && !orderToShow.sent">
+                            <p>{{titles.showFacteurModal.moneyReceivedDate[lang]}}: {{orderToShow.payed|date:'yyyy-MM-dd'}}</p>
+                            <p>{{titles.showFacteurModal.facteurNotSent[lang]}}</p>
+                        </div>
+                        <div ng-if="orderToShow.payed && orderToShow.sent">
+                            <p>{{titles.showFacteurModal.moneyReceivedDate[lang]}}: {{orderToShow.payed|date:'yyyy-MM-dd'}}</p>
+                            <p>{{titles.showFacteurModal.sendDate[lang]}}: {{orderToShow.sent|date:'yyyy-MM-dd'}}</p>
+                            <p>{{titles.section1Ad.trackNo[lang]}}: {{orderToShow.trackno}}</p>
+                            <p>{{titles.showFacteurModal.notReceivedMsg[lang]}} {{titles.showFacteurModal.contact[lang]}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-    
-<!-- USER PROFILE-MODAL ---------------------------------------------------------------------------------------------------------------- -->    
-<div class="modal fade" id="userProfileModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-                <ul class="nav nav-tabs">
-                    <li><a data-toggle="tab" href="#profile">{{titles.index.profile[lang]}}</a></li>
-                    <li class="active"><a data-toggle="tab" href="#purchase">{{titles.index.purchases[lang]}}</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div id="profile" class="tab-pane fade">
-                        <form name="userProfileForm">
-                            <div class="row">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6 col-sm-6">
-                                        <label>{{titles.index.name[lang]}}</label>
-                                        <input type="text" class="form-control" ng-model="currentUser.name" required>
+
+    <!-- USER PROFILE-MODAL ---------------------------------------------------------------------------------------------------------------- -->
+    <div class="modal fade" id="userProfileModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs">
+                        <li><a data-toggle="tab" href="#profile">{{titles.index.profile[lang]}}</a></li>
+                        <li class="active"><a data-toggle="tab" href="#purchase">{{titles.index.purchases[lang]}}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="profile" class="tab-pane fade">
+                            <form name="userProfileForm">
+                                <div class="row">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label>{{titles.index.name[lang]}}</label>
+                                            <input type="text" class="form-control" ng-model="currentUser.name" required>
+                                        </div>
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label>{{titles.index.lastname[lang]}}</label>
+                                            <input type="text" class="form-control" ng-model="currentUser.lastname" required>
+                                        </div>
                                     </div>
-                                    <div class="form-group col-md-6 col-sm-6">
-                                        <label>{{titles.index.lastname[lang]}}</label>
-                                        <input type="text" class="form-control"ng-model="currentUser.lastname" required>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-9 col-sm-9">
+                                            <label>{{titles.index.address[lang]}}</label>
+                                            <input type="text" required class="form-control" ng-model="currentUser.adress">
+                                        </div>
+                                        <div class="form-group col-md-3 col-sm-3">
+                                            <label>{{titles.index.pCode[lang]}}</label>
+                                            <input type="text" class="form-control" ng-maxlength="6" ng-pattern="/^[aA-zZ]\d{1}[aA-zZ]\d{1}[aA-zZ]\d{1}$/" ng-model="currentUser.cp">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-9 col-sm-9">
-                                        <label>{{titles.index.address[lang]}}</label>
-                                        <input type="text" required class="form-control" ng-model="currentUser.adress">
-                                    </div>
-                                    <div class="form-group col-md-3 col-sm-3">
-                                        <label>{{titles.index.pCode[lang]}}</label>
-                                        <input type="text" class="form-control" ng-maxlength="6" ng-pattern="/^[aA-zZ]\d{1}[aA-zZ]\d{1}[aA-zZ]\d{1}$/" ng-model="currentUser.cp">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6 col-sm-6">
-                                        <label>{{titles.index.city[lang]}}</label>
-                                        <input type="text" class="form-control" ng-model="currentUser.city" required>
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6">
-                                        <label>{{titles.index.province[lang]}}</label>
-                                        <select class="form-control" ng-model="currentUser.province" required>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label>{{titles.index.city[lang]}}</label>
+                                            <input type="text" class="form-control" ng-model="currentUser.city" required>
+                                        </div>
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label>{{titles.index.province[lang]}}</label>
+                                            <select class="form-control" ng-model="currentUser.province" required>
                                             <option value="Alberta">Alberta</option>
                                             <option value="British Columbia">British Columbia</option>
                                             <option value="Manitoba">Manitoba</option>
@@ -490,56 +501,56 @@
                                             <option value="Saskatchewan">Saskatchewan</option>
                                             <option value="Yukon">Yukon</option>
                                         </select>
+                                        </div>
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label class="col-form-label">{{titles.index.phoneNo[lang]}}:</label>
+                                            <input type="text" class="form-control" ng-pattern="/^\d{3}\d{3}\d{4}$/" ng-model="currentUser.phone">
+                                        </div>
                                     </div>
-                                    <div class="form-group col-md-6 col-sm-6">
-                                        <label class="col-form-label">{{titles.index.phoneNo[lang]}}:</label>
-                                        <input type="text" class="form-control" ng-pattern="/^\d{3}\d{3}\d{4}$/" ng-model="currentUser.phone">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label>{{titles.index.email[lang]}} <sub><em>({{titles.index.username[lang]}})</em></sub></label>
+                                            <input type="email" class="form-control" ng-model="currentUser.username" required>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-6 col-sm-6">
-                                        <label>{{titles.index.email[lang]}} <sub><em>({{titles.index.username[lang]}})</em></sub></label>
-                                        <input type="email" class="form-control" ng-model="currentUser.username" required>
-                                    </div>
-                                </div>
+                                <button ng-click="saveUserProfile()" ng-disabled="!userProfileForm.$dirty || userProfileForm.$invalid" class="btn btn-primary">{{titles.index.save[lang]}}</button>
+                            </form>
+                        </div>
+
+
+                        <div id="purchase" class="tab-pane fade in active">
+                            <div class="orders" ng-if="pendingPurchases">
+                                <h4>{{titles.index.pendingPurchase[lang]}}</h4>
+                                <table class="table">
+                                    <tr>
+                                        <th>{{titles.index.purchaseDate[lang]}}</th>
+                                        <th>{{titles.purchase.orderNo[lang]}}</th>
+                                        <th>{{titles.index.payable[lang]}}</th>
+                                        <th>{{titles.index.payed[lang]}}</th>
+                                        <th>{{titles.index.send[lang]}}</th>
+                                    </tr>
+                                    <tr ng-repeat="order in pendingPurchases">
+                                        <td><a ng-click="showFacteur_ToShow(order)" data-toggle="modal" data-target="#teaOnlyToShowModal">{{order.date | date:shortDate}}</a></td>
+                                        <td>{{order.cn}}</td>
+                                        <td>{{order.total[4]|number:2}}$</td>
+                                        <td>
+                                            <i ng-if="!order.payed" class="fa fa-square-o" aria-hidden="true"></i>
+                                            <i ng-if="order.payed" class="fa fa-check-square-o" aria-hidden="true" data-toggle="tooltip" title="{{order.payed|date:shortDate}}"></i>
+                                        </td>
+                                        <td>
+                                            <i ng-if="!order.sent" class="fa fa-square-o" aria-hidden="true"></i>
+                                            <i ng-if="order.sent" class="fa fa-check-square-o" aria-hidden="true" data-toggle="tooltip" title="{{order.sent|date:shortDate}}"></i>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
-                            <button ng-click="saveUserProfile()" ng-disabled="!userProfileForm.$dirty || userProfileForm.$invalid" class="btn btn-primary">{{titles.index.save[lang]}}</button>
-                        </form>                          
-                    </div>
-
-
-                    <div id="purchase" class="tab-pane fade in active">
-                        <div class="orders" ng-if="pendingPurchases">
-                            <h4>{{titles.index.pendingPurchase[lang]}}</h4>
-                            <table class="table">
-                                <tr>
-                                    <th>{{titles.index.purchaseDate[lang]}}</th>
-                                    <th>{{titles.purchase.orderNo[lang]}}</th>
-                                    <th>{{titles.index.payable[lang]}}</th>
-                                    <th>{{titles.index.payed[lang]}}</th>
-                                    <th>{{titles.index.send[lang]}}</th>
-                                </tr>
-                                <tr ng-repeat="order in pendingPurchases">
-                                    <td><a ng-click="showFacteur_ToShow(order)" data-toggle="modal" data-target="#teaOnlyToShowModal">{{order.date | date:shortDate}}</a></td>
-                                    <td>{{order.cn}}</td>
-                                    <td>{{order.total[4]|number:2}}$</td>
-                                    <td>
-                                        <i ng-if="!order.payed" class="fa fa-square-o" aria-hidden="true"></i>
-                                        <i ng-if="order.payed" class="fa fa-check-square-o" aria-hidden="true" data-toggle="tooltip" title="{{order.payed|date:shortDate}}"></i>
-                                    </td>
-                                    <td>
-                                        <i ng-if="!order.sent" class="fa fa-square-o" aria-hidden="true"></i>
-                                        <i ng-if="order.sent" class="fa fa-check-square-o" aria-hidden="true" data-toggle="tooltip" title="{{order.sent|date:shortDate}}"></i>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>                                    
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
     <!-- How to pay-MODAL ---------------------------------------------------------------------------------------------------------------- -->
@@ -584,8 +595,7 @@
                                     <li>Amount of the invoice to be paid</li>
                                     <li>Billable account</li>
                                     <li>Security question: write "my order"</li>
-                                    <li>Answer: write the number of your order. (ex: if your order number is 001234,
-                                        your answer should be: 001234)</li>
+                                    <li>Answer: write the number of your order. (ex: if your order number is 001234, your answer should be: 001234)</li>
                                 </ul>
                             </li>
                             <li>Follow the instructions to validate the information and send the transfer order.</li>

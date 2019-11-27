@@ -1,17 +1,19 @@
 <section class="container section3" id="section3">
     <h2>{{titles.section3.teaShop[lang]}}</h2>
     <div class="row">
-        <span ng-repeat="tea in products" ng-if="!tea.special">
+        <span ng-repeat="tea in products">
             <span>
-                <div id="{{'grp'+tea.parentGrpId}}" class="col-xs-4 col-sm-3 col-md-5" data-toggle="modal" data-target="#productModal" ng-click="showThisProduct(tea)">
-                    <div class="image">
-                        <img ng-src="images/{{tea.image}}">
-                    </div>
-                    <h3 ng-if="lang == 0">{{tea.title_en}}</h3>
-                    <h3 ng-if="lang == 1">{{tea.title_fr}}</h3>
-                    <p><em>{{tea.price[0].price|number:2}}$</em> /{{tea.price[0].weight}}gr</p> 
-                </div>
-            </span>
-        </span>
+        <div id="{{'grp'+tea.parentGrpId}}" class="col-xs-4 col-sm-3 col-md-5" data-toggle="modal" data-target="#productModal" ng-click="showThisProduct(tea)">
+        <div class="image">
+            <img ng-src="images/{{tea.image}}">
+        </div>
+        <h3 ng-if="lang == 0">{{tea.title_en}}</h3>
+        <h3 ng-if="lang == 1">{{tea.title_fr}}</h3>
+        <span class="title" ng-if="!lang">{{mainGroups[tea.parentGrpId-1].name_en}}</span>
+        <span class="title" ng-if="lang">{{mainGroups[tea.parentGrpId-1].name_fr}}</span>
+        <p><em>{{tea.price[0].price|number:2}}$</em> /{{tea.price[0].weight}}gr</p>
+    </div>
+    </span>
+    </span>
     </div>
 </section>
