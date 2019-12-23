@@ -267,7 +267,12 @@
                         </div>
                     </div>
                     <div class="left">
-                        <img ng-src="images/{{productToShow.image}}">
+                        <div>
+                            <img ng-src="images/{{productToShow.image}}" style={{productPreviewSizeStyle}}>
+                        </div>
+                        <button ng-click="smallerProductPreview()"><i class="fa fa-minus"></i></button>
+                        <progress value="{{productPreviewSize-100}}" max="150"></progress>
+                        <button ng-click="biggerProductPreview()"><i class="fa fa-plus"></i></button>
                         <p ng-if="lang == 0">{{productToShow.desc_en}}</p>
                         <p ng-if="lang == 1">{{productToShow.desc_fr}}</p>
                     </div>

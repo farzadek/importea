@@ -139,6 +139,8 @@ app.controller('mainCtrl', function($scope, $cookieStore, $http, $timeout, grPor
     $scope.contactUsFormErrMsg = ''; // contact us form, error message
 
     $scope.showPhotoSuccesMsg = false;
+    $scope.productPreviewSize = 100;
+    $scope.productPreviewSizeStyle = 'height:' + $scope.productPreviewSize + '%';
 
     /* ------------------------------------- */
     $scope.showLoader = true;
@@ -341,6 +343,19 @@ app.controller('mainCtrl', function($scope, $cookieStore, $http, $timeout, grPor
     $scope.decreaseOrder = function() {
         if ($scope.order > 0) {
             $scope.order--;
+        }
+    }
+
+    $scope.biggerProductPreview = function() {
+        if ($scope.productPreviewSize < 250) {
+            $scope.productPreviewSize += 10;
+            $scope.productPreviewSizeStyle = 'height:' + $scope.productPreviewSize + '%';
+        }
+    }
+    $scope.smallerProductPreview = function() {
+        if ($scope.productPreviewSize > 100) {
+            $scope.productPreviewSize -= 10;
+            $scope.productPreviewSizeStyle = 'height:' + $scope.productPreviewSize + '%';
         }
     }
 

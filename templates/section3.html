@@ -1,7 +1,7 @@
 <section class="container section3" id="section3">
     <h2>{{titles.section3.teaShop[lang]}}</h2>
     <div class="row">
-        <span ng-repeat="tea in products">
+        <span ng-repeat="tea in products| orderBy:'parentGrpId' ">
             <span>
         <div id="{{'grp'+tea.parentGrpId}}" class="col-xs-4 col-sm-3 col-md-5" data-toggle="modal" data-target="#productModal" ng-click="showThisProduct(tea)">
         <div class="image">

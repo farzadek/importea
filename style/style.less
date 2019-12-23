@@ -411,14 +411,33 @@ body{
                     width: 50%;
                     float: left;
                     display: block;
-                    img{
-                        height: 200px;
-                        width: 200px;
-                        margin: 0 auto 1.5em;
-                        border-radius: 50%;
+                    position: relative;
+                    progress{
+                        margin-bottom: 5px;
+                        height: 15px;
+                        width: 380px;
+                    }
+                    button{
+                        font-size: 2em;
+                        width: 35px;
+                        height: 35px;
+                    }
+
+                    &>div{
+                        width: 450px;
+                        height: 300px;
                         display: block;
+                        margin-bottom: .25em;
+                        overflow: scroll;
+                        img{
+                            height: 100%;
+                            object-fit: cover;
+                            display: block;
+                            margin: 0 auto;
+                        }
                     }
                     p{
+                        margin-top: .5em;
                         line-height: 1.3;
                         font-family: roboto;
                     }
@@ -909,14 +928,14 @@ header{
                     div{
                         background-color: white;
                         width: 100%;
-                        padding: .25em 0;
+                        padding: 0;
                         .image{
-                            border-radius: 50%;
                             overflow: hidden;
                             img{
-                                margin: 0 auto;
+                                margin: 10px auto;
                                 display: table;
-                                width: 100%;
+                                width: 90%;
+                                border-radius: 50%;
                             }
                         }
                         h3{
@@ -994,7 +1013,7 @@ header{
     .row{
         .col-md-5{
             width: 18%;
-            height: 270px;
+            height: 330px;
         }
         div[class^="col-xs-"]{
             margin: 2.5rem 1% 0;
@@ -1010,6 +1029,9 @@ header{
                 font-size: .9em;
                 padding-top: 1px;
                 border-top: 1px #333 solid;
+                position: absolute;
+                bottom: 55px;
+                width: 92%;
             }
             &:hover{
                 background-color: rgba(240,255,190,.6);
@@ -1021,7 +1043,7 @@ header{
                 width: 100%;
                 padding: 5px;
                 img{
-                    width: 80%;
+                    width: 100%;
                     border-radius: 50%;
                     margin: .5rem auto;
                     display: block;
@@ -1033,11 +1055,11 @@ header{
                 font-size: 1.75rem;
                 vertical-align: bottom;
                 line-height: 1.2;
-                padding: 0 1rem;
+                padding: 0;
                 margin-top:5px;                    
             }
             p{
-                font-size: 1.3em;
+                font-size: 1.4em;
                 left: 50%;
                 transform: translatex(-50%);
                 display: table;
@@ -1045,7 +1067,7 @@ header{
                 width: 90%;
                 text-align: center;
                 background: #5F6020;
-                padding: 3px 3px 6px 3px;
+                padding: 3px 3px 10px 3px;
                 -webkit-box-shadow: 0 12px 8px -8px rgba(0,0,0,.5);
                 -moz-box-shadow: 0 12px 8px -8px rgba(0,0,0,.5);
                 box-shadow: 0 12px 8px -8px rgba(0,0,0,.5);
@@ -1790,7 +1812,7 @@ footer{
     .section3{
         .row{
             .col-md-5{
-                height: 220px;
+                height: 295px;
             }
         }
     }
@@ -1832,7 +1854,7 @@ footer{
     .section3{
         .row{
             .col-md-5{
-                height: 210px;
+                height: 295px;
             }
         }
     }
@@ -1875,6 +1897,13 @@ footer{
 
 /** --------- Mobile & Tablet portrait -------------------------------------------------------------- */
 @media screen and (max-width: @md-size) and (orientation: portrait){
+    .section3{
+        .row{
+            .col-md-5{
+                height: 275px;
+            }
+        }
+    }
     #productModal{
         .modal-dialog{
             width: 80%;
@@ -1920,6 +1949,15 @@ footer{
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+    .section3{
+        .row{
+            div[class^="col-xs-"]{
+                p{
+                    font-size: 1.25em;
                 }
             }
         }
@@ -2071,12 +2109,12 @@ footer{
         .row{
             .col-md-5{
                 width: 31%;
-                height: 195px;
+                height: 220px;
             }
             div[class^="col-xs-"]{
                 h3{
                     font-family: "Crete Round";
-                    font-size: 1em;
+                    font-size: .9em;
                     margin-top: 0;
                     margin-bottom: 5px;
                 }
@@ -2085,6 +2123,9 @@ footer{
                         width: 100%;
                         border-width: 2px;
                     }
+                }
+                .title{
+                    width:75%;
                 }
                 p{
                     font-size: .8em;
@@ -2131,22 +2172,7 @@ footer{
             }
         }
     }
-/*
-    .section1s{
-        .row{
-            .col-sm-3{
-                .image{
-                    img{
-                        padding: 7px;
-                    }
-                }
-                h1{
-                    font-size: 1.55em;
-                }
-            }
-        }
-    }
-*/
+
     footer{
         margin-top: 5em;
         &>.row{
@@ -2317,7 +2343,7 @@ footer{
     }
 }
 
-    /* ----- mobile phone - portrait ----- */
+    /* ----- mobile phone - landscape ----- */
     @media screen and (orientation: landscape) and (max-height: @smd-size){
         .section1{
             .slogan{
@@ -2373,10 +2399,14 @@ footer{
             .row{
                 .col-md-5 {
                    height: 210px;
+                   p{
+                       font-size: 1.1em;
+                   }
                 }
-                .col-xs-4{
+                div[class^="col-xs-"]{
+                    height: 240px;
                     h3{
-                        font-size: 1.5rem;
+                        font-size: 1.3rem;
                     }
                     p{
                         font-size: .8em;
