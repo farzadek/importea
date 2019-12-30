@@ -11,14 +11,28 @@
 
     <title>IMPORTEA</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/titles.js"></script>
     <script>
         if (typeof angular == 'undefined') {
             document.write(unescape("%3Cscript src='assets/angular161.js'%3E%3C/script%3E"));
         }
     </script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 </head>
 
+<script>
+    document.onreadystatechange = function() {
+        if (document.readyState == "complete") {
+            document.querySelector("header").style.display = "block";
+            document.getElementById('sec-main').classList.remove('hide-it');
+        }
+    };
+</script>
 
 <body id="page-top" ng-app="greenPortalApp" ng-controller="mainCtrl">
 
@@ -29,7 +43,7 @@
         <div></div>
     </div>
 
-    <header>
+    <header id="header" style="display: none;">
         <nav class="navbar navbar-default navbar-static-top navbar-inverse">
             <div class="container">
                 <a ng-if="basket.items.length>0" class="basket" ng-click="confirmPurchase()" data-toggle="modal" data-target="#basketModal">
@@ -58,7 +72,7 @@
             </div>
         </nav>
     </header>
-    <section ng-if="!currentUser || (currentUser && currentUser.type==1)">
+    <section ng-if="!currentUser || (currentUser && currentUser.type==1)" class="hide-it" id="sec-main">
 
         <div ng-include="'templates/section1.html'"></div>
 
@@ -613,13 +627,7 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-cookies.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/titles.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Crete+Round|Noto+Serif+TC:400,700" rel="stylesheet">
     <link href="style/style.css" rel="stylesheet">

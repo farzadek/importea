@@ -27,7 +27,12 @@
     color: @mainBackground;
     padding: .35em .2em;
 }
-
+.not-visible{
+    visibility: hidden;
+}
+.hide-it{
+    display: none;
+}
 body{
     background-color: @mainBackground;
     font-family: "Noto Serif TC", "Crete Round", "Helvetica Neue",Arial,sans-serif !important;
@@ -929,6 +934,7 @@ header{
                         background-color: white;
                         width: 100%;
                         padding: 0;
+                        position: relative;
                         .image{
                             overflow: hidden;
                             img{
@@ -939,9 +945,19 @@ header{
                             }
                         }
                         h3{
+                            font-weight: 700;
                             font-family: "Crete Round";
                             text-align: center;
+                            position: absolute;
                             text-transform: uppercase;
+                            top: 50%;
+                            font-size: 3.25em;
+                            transform: translateY(-50%);
+                            margin: 0;
+                            text-shadow: 0 0 3px black;
+                            color: white;
+                            background-color: rgba(255,255,255,.4);
+                            width: 100%;
                         }
                     }
                 }
@@ -1215,130 +1231,6 @@ footer{
         font-size: .9em;
     }
 }
-/*
-.section1s{
-    margin: 2.5em auto 0;
-    font-family: "Noto Serif TC";
-    .row{
-        .col-sm-3{
-            margin-bottom: 3em;
-            &:nth-child(1){
-                .image{
-                    background-color: @weed-color-sativa;
-                }
-            }
-            &:nth-child(2){
-                .image{
-                    background-color: @weed-color-hybrid;
-                }
-            }
-            &:nth-child(3){
-                .image{
-                    background-color: @weed-color-indica;
-                }
-            }
-            &:nth-child(4){
-                .image{
-                    background-color: @weed-color-concent;
-                }
-            }
-            .image{
-                overflow: hidden;
-                border-radius: 50%;
-                width:75%;
-                margin: 0 auto;
-                img{
-                    padding: 10px;
-                    border-radius: 50%;
-                    width: 100%;
-                }
-            }
-            h1{
-                text-align: center;
-                font-family: "Crete Round";
-                margin-top: 5px;
-                font-size: 2.1em;
-            }   
-        }        
-    }
-}
-.section2s{
-    h2{
-        text-align: center;
-        font-family: "Crete Round";
-        text-transform: uppercase;
-        font-size: 3.5em;
-        margin: 1em 0;
-        text-shadow: 0 0 2px @main-color;
-    }
-    .row{
-        .col-xs-6{
-            padding: 0 .75em;
-            &>div{
-                padding: 5px 5px 1px 5px;
-                border-radius: 8px;                
-                box-shadow: 2px 3px 10px rgba(130,130,130,.3);
-                &.bk-sahiva{
-                    background-color: @weed-color-sativa;
-                }
-                &.bk-indica{
-                    background-color: @weed-color-indica;
-                }    
-                &.bk-hybrid{
-                    background-color: @weed-color-hybrid;
-                }    
-                &.bk-concent{
-                    background-color: @weed-color-concent;
-                }
-                &:hover{
-                    opacity: .6;
-                }
-                box{
-                    border-radius: 8px;
-                    display: block;
-                    padding-top: .5em;
-                    background-color: white;
-                    cursor: pointer;
-                    .image{
-                        img{
-                            border-radius: 50%;
-                            width: 70%;
-                            margin: 0 auto;
-                            display: table;
-                            -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.5);
-                            -moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.5);
-                            box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.5);
-                        }
-                    }
-                    h3{
-                        text-align: center;
-                        margin-top: 5px;
-                        padding: .25em 0 .25em;
-                        text-transform: capitalize;
-                    }
-                    h4{
-                        text-align: center;
-                        padding-bottom: .4em;
-                        font-style: italic;
-                        font-size: .85em; 
-                    }
-                }         
-            }
-            margin-bottom: 2.5em;
-        }
-    }
-}
-
-.section3s{
-    .row{
-        p{
-            text-align: justify;
-            font-size: 1.1em;
-            line-height: 1.35;
-        }
-    }
-}
-*/
 .section1ad{
     .head{
         margin-top: 1em;
@@ -1848,8 +1740,8 @@ footer{
     #teaOnlyToShowModal{
         font-size: 1em;
     }
-    .section1s .row .col-sm-4 .image {
-        width: 90%;
+    .section1>.row .type-of-tea .row .tea-groups div h3{
+        font-size: 2.5em;
     }
     .section3{
         .row{
@@ -2067,8 +1959,7 @@ footer{
                                 }
                             }
                             h3{
-                                font-size: 16px;
-                                margin-top: 10px;
+                                font-size: 2.25em;
                             }
                         }
                     }
