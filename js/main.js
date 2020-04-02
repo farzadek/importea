@@ -5,6 +5,12 @@ app.config(function($routeProvider) {
         .when("/", {
             templateUrl: "index.html"
         })
+        .when("/privacy_en", {
+            templateUrl: "templates/privacy_en.html"
+        })
+        .when("/privacy_fr", {
+            templateUrl: "templates/privacy_fr.html"
+        })
         .otherwise({
             templateUrl: "index.html"
         });

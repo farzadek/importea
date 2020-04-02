@@ -207,6 +207,7 @@ body{
 
 
 #userProfileModal{
+    z-index: 9999;
     .modal-body{
         .nav{
             li{
@@ -218,9 +219,6 @@ body{
         .tab-content{
             padding: 1em .5em;
             form{
-                label{
-                    text-transform: capitalize;
-                }
                 &>button{
                     margin-top: 1em;
                 }
@@ -360,6 +358,7 @@ body{
 
 #teaOnlyToShowModal{
     font-size: 1.2em;
+    z-index: 9999 !important;
     .modal-body{
         thead{
             th{
@@ -529,6 +528,7 @@ body{
                     }
                     .descript{
                         ul{
+                            margin-left: 1.5em;
                             li{
                                 list-style-type: none;
                                 font-size: 1em;
@@ -546,128 +546,24 @@ body{
     }
 }
 
-/*
-#weedModal{
-    .modal-dialog{
-        width: 70%;
-        .modal-content{
-            .modal-header{
-                h2{
-                    float: left;
-                }
-            }
-            .modal-body{
-                display: inline-block;
-                .left{
-                    padding-right: .5em;
-                    width: 50%;
-                    float: left;
-                    display: block;
-                    img{
-                        height: 200px;
-                        width: 200px;
-                        margin: 0 auto 1.5em;
-                        border-radius: 50%;
-                        display: block;
-                    }
-                    p{
-                        line-height: 1.2;
-                    }
-                }
-                .right{
-                    padding-right: 1.5em;
-                    padding-left: .5em;
-                    width: 50%;
-                    float: left;
-                    display: block;
-                    .rating{
-                        i{
-                            display: inline;
-                            font-size: 2em;
-                            color: #FFD700;
-                        }
-                    }
-                    .grade{
-                        margin-top: .5em;
-                        font-size: 1.65em;
-                        font-family:"Crete Round";
-                    }
-                    .addBasket{
-                        form{
-                            width: 100%;
-                            select{
-                                font-size: 1.25em;
-                                height: 2.5em;
-                            }
-                            .quantity{
-                                margin: .75em auto 0;
-                                display: table;
-                                i{
-                                    font-size: 2em;
-                                    cursor: pointer;
-                                }
-                                input{
-                                    width: 2.5em;
-                                    text-align: center;
-                                    border: 0;
-                                    height: 2.25em;
-                                    padding: .1em .5em;
-                                    font-size: 2.25em;
-                                    font-family:"Crete Round";
-                                }
-                            }
-                            button{
-                                margin: 0 auto;
-                                display: block;
-                                transition:0.5s linear all;
-                            }
-                            .total{
-                                margin-left: 1em;
-                                font-weight: bold;
-                                font-style: italic;
-                                font-size: .9em;
-                                margin-top: -1.7em;
-                                float: right;
-                                color: #888;
-                            }
-                        }
-                    }
-                    .charts{
-                        margin-top: 1.25em;
-                        .progress{
-                            margin-bottom: 1px;
-                            height: 25px;
-                            box-shadow: none;
-                            .progress-bar{
-                                border-bottom-right-radius: 15px;
-                                border-top-right-radius: 15px;
-                                border-bottom-left-radius: 0;
-                                border-top-left-radius: 0;
-                                font-size: .9em;
-                                font-family: "Noto Serif TC";
-                                padding-top: 2px;
-                            }
-                        }
-                    }
-                    .descript{
-                        ul{
-                            li{
-                                list-style-type: none;
-                                font-size: 1em;
-                                margin-top: .5em;
-                                i{
-                                    font-size: 1.25em;
-                                    margin-right: .5em;
-                                }
-                            }
-                        }
-                    }
+#privacy{
+    z-index: 10007;
+    line-height: 1.5;
+    .modal-body{
+        padding-left: 3em;
+        padding-right: 3em;
+        ol{
+            ul{ 
+                margin-left: 1.5em;
+                ul{
+                    margin-left: 1.5em;
                 }
             }
         }
     }
 }
-*/
+
+
 #basketModal{
     .modal-body{
         thead{
@@ -855,6 +751,7 @@ header{
 }
 
 #faq{
+    z-index: 10007;
     h1, h3{
         font-family:"Crete Round";
     }
@@ -1002,7 +899,6 @@ header{
                 p{
                     font-size: 4rem;
                     font-family: "Crete Round";
-                    text-transform: capitalize;
                     margin-top: 1rem;
                     margin-bottom: .5rem;
                     line-height: 1.2;

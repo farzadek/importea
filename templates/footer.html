@@ -1,18 +1,19 @@
-  <footer class="container">
+<footer class="container">
     <div class="row">
         <ul>
-          <li><a>{{titles.footer.supportCenter[lang]}}</a></li>
-          <li><a data-toggle="modal" data-target="#faq">{{titles.footer.faq[lang]}}</a></li>
-          <li><a data-toggle="modal" data-target="#contactus">{{titles.footer.contactUs[lang]}}</a></li>
-          <li ng-if="currentUser"><a ng-click="openUserBox()" data-toggle="modal" data-target="#userProfileModal">{{titles.footer.myAccount[lang]}}</a></li>
-          <li ng-if="!currentUser"><a data-toggle="modal" data-target="#loginModal">{{titles.footer.myAccount[lang]}}</a></li>
+            <li><a href="privacy_en">{{titles.footer.politique[lang]}}</a></li>
+            <li><a href="terms_en">{{titles.footer.politique[lang]}}</a></li>
+            <li><a data-toggle="modal" data-target="#faq">{{titles.footer.faq[lang]}}</a></li>
+            <li><a data-toggle="modal" data-target="#contactus">{{titles.footer.contactUs[lang]}}</a></li>
+            <li ng-if="currentUser"><a ng-click="openUserBox()" data-toggle="modal" data-target="#userProfileModal">{{titles.footer.myAccount[lang]}}</a></li>
+            <li ng-if="!currentUser"><a data-toggle="modal" data-target="#loginModal">{{titles.footer.myAccount[lang]}}</a></li>
         </ul>
         <a href="#top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
-    </div>  
+    </div>
     <p>&copy; {{titles.footer.copyRight[lang]}}</p>
-  </footer>
+</footer>
 
-<!-- contact us - MODAL ---------------------------------------------------------------------------------------------------------------- -->    
+<!-- contact us - MODAL ---------------------------------------------------------------------------------------------------------------- -->
 <div class="modal fade" id="contactus" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -51,7 +52,7 @@
     </div>
 </div>
 
-<!-- LOGIN-MODAL ---------------------------------------------------------------------------------------------------------------- -->    
+<!-- LOGIN-MODAL ---------------------------------------------------------------------------------------------------------------- -->
 <div class="modal fade" id="faq" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

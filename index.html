@@ -227,6 +227,115 @@
         </div>
     </div>
 
+    <!-- USER PROFILE-MODAL ---------------------------------------------------------------------------------------------------------------- -->
+    <div class="modal fade" id="userProfileModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs">
+                        <li><a data-toggle="tab" href="#profile">{{titles.index.profile[lang]}}</a></li>
+                        <li class="active"><a data-toggle="tab" href="#purchase">{{titles.index.purchases[lang]}}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="profile" class="tab-pane fade">
+                            <form name="userProfileForm">
+                                <div class="row">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label>{{titles.index.name[lang]}}</label>
+                                            <input type="text" class="form-control" ng-model="currentUser.name" required>
+                                        </div>
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label>{{titles.index.lastname[lang]}}</label>
+                                            <input type="text" class="form-control" ng-model="currentUser.lastname" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-9 col-sm-9">
+                                            <label>{{titles.index.address[lang]}}</label>
+                                            <input type="text" required class="form-control" ng-model="currentUser.adress">
+                                        </div>
+                                        <div class="form-group col-md-3 col-sm-3">
+                                            <label>{{titles.index.pCode[lang]}}</label>
+                                            <input type="text" class="form-control" ng-maxlength="6" ng-pattern="/^[aA-zZ]\d{1}[aA-zZ]\d{1}[aA-zZ]\d{1}$/" ng-model="currentUser.cp">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label>{{titles.index.city[lang]}}</label>
+                                            <input type="text" class="form-control" ng-model="currentUser.city" required>
+                                        </div>
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label>{{titles.index.province[lang]}}</label>
+                                            <select class="form-control" ng-model="currentUser.province" required>
+                                                <option value="Alberta">Alberta</option>
+                                                <option value="British Columbia">British Columbia</option>
+                                                <option value="Manitoba">Manitoba</option>
+                                                <option value="New Brunswick">New Brunswick</option>
+                                                <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                                                <option value="Northwest Territories">Northwest Territories</option>
+                                                <option value="Nova Scotia">Nova Scotia</option>
+                                                <option value="Nunavut">Nunavut</option>
+                                                <option value="Ontario">Ontario</option>
+                                                <option value="Prince Edward Island">Prince Edward Island</option>
+                                                <option value="Quebec">Quebec</option>
+                                                <option value="Saskatchewan">Saskatchewan</option>
+                                                <option value="Yukon">Yukon</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label class="col-form-label">{{titles.index.phoneNo[lang]}}:</label>
+                                            <input type="text" class="form-control" ng-pattern="/^\d{3}\d{3}\d{4}$/" ng-model="currentUser.phone">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label>{{titles.index.email[lang]}} <sub><em>({{titles.index.username[lang]}})</em></sub></label>
+                                            <input type="email" class="form-control" ng-model="currentUser.username" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button ng-click="saveUserProfile()" ng-disabled="!userProfileForm.$dirty || userProfileForm.$invalid" class="btn btn-primary">{{titles.index.save[lang]}}</button>
+                            </form>
+                        </div>
+
+
+                        <div id="purchase" class="tab-pane fade in active">
+                            <div class="orders" ng-if="pendingPurchases">
+                                <h4>{{titles.index.pendingPurchase[lang]}}</h4>
+                                <table class="table">
+                                    <tr>
+                                        <th>{{titles.index.purchaseDate[lang]}}</th>
+                                        <th>{{titles.purchase.orderNo[lang]}}</th>
+                                        <th>{{titles.index.achat[lang]}}</th>
+                                        <th>{{titles.index.payed[lang]}}</th>
+                                        <th>{{titles.index.send[lang]}}</th>
+                                    </tr>
+                                    <tr ng-repeat="order in pendingPurchases">
+                                        <td><a ng-click="showFacteur_ToShow(order)" data-toggle="modal" data-target="#teaOnlyToShowModal">{{order.date | date:shortDate}}</a></td>
+                                        <td>{{order.cn}}</td>
+                                        <td>{{order.total[4]|number:2}}$</td>
+                                        <td>
+                                            <i ng-if="!order.payed" class="fa fa-square-o" aria-hidden="true"></i>
+                                            <i ng-if="order.payed" class="fa fa-check-square-o" aria-hidden="true" data-toggle="tooltip" title="{{order.payed|date:shortDate}}"></i>
+                                        </td>
+                                        <td>
+                                            <i ng-if="!order.sent" class="fa fa-square-o" aria-hidden="true"></i>
+                                            <i ng-if="order.sent" class="fa fa-check-square-o" aria-hidden="true" data-toggle="tooltip" title="{{order.sent|date:shortDate}}"></i>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- PRODUCT-MODAL ---------------------------------------------------------------------------------------------------------------- -->
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" style="z-index:10002">
         <div class="modal-dialog" role="document">
@@ -329,7 +438,7 @@
                             </tbody>
                             <thead class="total">
                                 <tr>
-                                    <th colspan="2">{{titles.index.total[lang]}}</th>
+                                    <th colspan="2">{{titles.index.sousTotal[lang]}}</th>
                                     <th colspan="2">{{basket.total | number:2}} $</th>
                                 </tr>
                                 <tr>
@@ -341,7 +450,7 @@
                                     <th colspan="2">-{{postalPrice | number:2}} $</th>
                                 </tr>
                                 <tr>
-                                    <th colspan="2">{{titles.index.payable[lang]}}</th>
+                                    <th colspan="2">{{titles.index.total[lang]}}</th>
                                     <th colspan="2">{{basket.subTotal | number:2}} $</th>
                                 </tr>
                             </thead>
@@ -376,7 +485,7 @@
     </div>
 
     <!-- FAQ-MODAL ---------------------------------------------------------------------------------------------------------------- -->
-    <div class="modal fade" id="faq" tabindex="-1" role="dialog" style="z-index: 10003">
+    <div class="modal fade" id="faq" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -425,7 +534,7 @@
                             </tbody>
                             <thead class="total">
                                 <tr>
-                                    <th colspan="2">{{titles.index.total[lang]}}</th>
+                                    <th colspan="2">{{titles.index.sousTotal[lang]}}</th>
                                     <th colspan="2">{{orderToShow.total[0] | number:2}} $</th>
                                 </tr>
                                 <tr>
@@ -437,7 +546,7 @@
                                     <th colspan="2">{{orderToShow.total[3] | number:2}} $</th>
                                 </tr>
                                 <tr>
-                                    <th colspan="2">{{titles.index.payable[lang]}}</th>
+                                    <th colspan="2">{{titles.index.total[lang]}}</th>
                                     <th colspan="2">{{orderToShow.total[4] | number:2}} $</th>
                                 </tr>
                             </thead>
@@ -461,116 +570,6 @@
             </div>
         </div>
     </div>
-
-    <!-- USER PROFILE-MODAL ---------------------------------------------------------------------------------------------------------------- -->
-    <div class="modal fade" id="userProfileModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <ul class="nav nav-tabs">
-                        <li><a data-toggle="tab" href="#profile">{{titles.index.profile[lang]}}</a></li>
-                        <li class="active"><a data-toggle="tab" href="#purchase">{{titles.index.purchases[lang]}}</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div id="profile" class="tab-pane fade">
-                            <form name="userProfileForm">
-                                <div class="row">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 col-sm-6">
-                                            <label>{{titles.index.name[lang]}}</label>
-                                            <input type="text" class="form-control" ng-model="currentUser.name" required>
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-6">
-                                            <label>{{titles.index.lastname[lang]}}</label>
-                                            <input type="text" class="form-control" ng-model="currentUser.lastname" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-9 col-sm-9">
-                                            <label>{{titles.index.address[lang]}}</label>
-                                            <input type="text" required class="form-control" ng-model="currentUser.adress">
-                                        </div>
-                                        <div class="form-group col-md-3 col-sm-3">
-                                            <label>{{titles.index.pCode[lang]}}</label>
-                                            <input type="text" class="form-control" ng-maxlength="6" ng-pattern="/^[aA-zZ]\d{1}[aA-zZ]\d{1}[aA-zZ]\d{1}$/" ng-model="currentUser.cp">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 col-sm-6">
-                                            <label>{{titles.index.city[lang]}}</label>
-                                            <input type="text" class="form-control" ng-model="currentUser.city" required>
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-6">
-                                            <label>{{titles.index.province[lang]}}</label>
-                                            <select class="form-control" ng-model="currentUser.province" required>
-                                            <option value="Alberta">Alberta</option>
-                                            <option value="British Columbia">British Columbia</option>
-                                            <option value="Manitoba">Manitoba</option>
-                                            <option value="New Brunswick">New Brunswick</option>
-                                            <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-                                            <option value="Northwest Territories">Northwest Territories</option>
-                                            <option value="Nova Scotia">Nova Scotia</option>
-                                            <option value="Nunavut">Nunavut</option>
-                                            <option value="Ontario">Ontario</option>
-                                            <option value="Prince Edward Island">Prince Edward Island</option>
-                                            <option value="Quebec">Quebec</option>
-                                            <option value="Saskatchewan">Saskatchewan</option>
-                                            <option value="Yukon">Yukon</option>
-                                        </select>
-                                        </div>
-                                        <div class="form-group col-md-6 col-sm-6">
-                                            <label class="col-form-label">{{titles.index.phoneNo[lang]}}:</label>
-                                            <input type="text" class="form-control" ng-pattern="/^\d{3}\d{3}\d{4}$/" ng-model="currentUser.phone">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 col-sm-6">
-                                            <label>{{titles.index.email[lang]}} <sub><em>({{titles.index.username[lang]}})</em></sub></label>
-                                            <input type="email" class="form-control" ng-model="currentUser.username" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button ng-click="saveUserProfile()" ng-disabled="!userProfileForm.$dirty || userProfileForm.$invalid" class="btn btn-primary">{{titles.index.save[lang]}}</button>
-                            </form>
-                        </div>
-
-
-                        <div id="purchase" class="tab-pane fade in active">
-                            <div class="orders" ng-if="pendingPurchases">
-                                <h4>{{titles.index.pendingPurchase[lang]}}</h4>
-                                <table class="table">
-                                    <tr>
-                                        <th>{{titles.index.purchaseDate[lang]}}</th>
-                                        <th>{{titles.purchase.orderNo[lang]}}</th>
-                                        <th>{{titles.index.payable[lang]}}</th>
-                                        <th>{{titles.index.payed[lang]}}</th>
-                                        <th>{{titles.index.send[lang]}}</th>
-                                    </tr>
-                                    <tr ng-repeat="order in pendingPurchases">
-                                        <td><a ng-click="showFacteur_ToShow(order)" data-toggle="modal" data-target="#teaOnlyToShowModal">{{order.date | date:shortDate}}</a></td>
-                                        <td>{{order.cn}}</td>
-                                        <td>{{order.total[4]|number:2}}$</td>
-                                        <td>
-                                            <i ng-if="!order.payed" class="fa fa-square-o" aria-hidden="true"></i>
-                                            <i ng-if="order.payed" class="fa fa-check-square-o" aria-hidden="true" data-toggle="tooltip" title="{{order.payed|date:shortDate}}"></i>
-                                        </td>
-                                        <td>
-                                            <i ng-if="!order.sent" class="fa fa-square-o" aria-hidden="true"></i>
-                                            <i ng-if="order.sent" class="fa fa-check-square-o" aria-hidden="true" data-toggle="tooltip" title="{{order.sent|date:shortDate}}"></i>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- How to pay-MODAL ---------------------------------------------------------------------------------------------------------------- -->
     <div class="modal fade" id="howToPay" tabindex="-1" role="dialog" style="z-index: 10001">
@@ -627,6 +626,27 @@
         </div>
     </div>
 
+    <!-- How to pay-MODAL ---------------------------------------------------------------------------------------------------------------- -->
+    <div class="modal fade" id="privacy" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{titles.footer.politique[lang]}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+                    <div ng-if="lang==1">
+                        <div ng-include="'templates/privacy_fr.html'"></div>
+                    </div>
+                    <div ng-if="lang==0">
+                        <div ng-include="'templates/privacy_en.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Crete+Round|Noto+Serif+TC:400,700" rel="stylesheet">
